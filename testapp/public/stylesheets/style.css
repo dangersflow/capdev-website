@@ -1,0 +1,15 @@
+body {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+    color: #00B7FF;
+}
+
+.title {
+    padding-top: 50px;
+}
+
+.main-form {
+    padding-top: 30px;
+}
