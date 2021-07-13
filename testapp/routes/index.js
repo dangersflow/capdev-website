@@ -10,6 +10,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/database', function(req, res, next) {
     var mysql = "SELECT * FROM projectinfo";
+    /*
     db.query(mysql, function(err, data) {
         if (err) throw err;
         console.log("table retrieved!");
@@ -17,7 +18,20 @@ router.get('/database', function(req, res, next) {
         console.log(json);
         res.render('database', { projectInfo: json });
     });
+    */
+    res.render('database');
 });
+
+/*
+router.update("/update", function(req, res, next) {
+
+})
+
+router.delete("/delete", function(req, res, next) {
+
+})
+
+*/
 
 router.post('/create', function(req, res, next) {
     const userDetails = req.body;

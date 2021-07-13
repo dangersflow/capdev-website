@@ -1,5 +1,7 @@
 var mysql = require('mysql');
 
+/*
+
 var conn = mysql.createConnection({
     host: 'localhost', // Replace with your host name
     user: 'franky', // Replace with your database username
@@ -12,4 +14,8 @@ conn.connect(function(err) {
     console.log('Database is connected successfully!');
 });
 
+
+
 module.exports = conn;
+
+*/
