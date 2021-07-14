@@ -1,21 +1,27 @@
-var mysql = require('mysql');
+var Connection = require('tedious').Connection;
 
-/*
+var config = {
+    server: 'testcapdev.database.windows.net', //update me
+    authentication: {
+        type: 'default',
+        options: {
+            userName: 'xxxxx', //update me
+            password: 'xxxxxx' //update me
+        }
+    },
+    options: {
+        // If you are on Microsoft Azure, you need encryption:
+        encrypt: true,
+        database: 'testcapdevdb' //update me
+    }
+};
 
-var conn = mysql.createConnection({
-    host: 'localhost', // Replace with your host name
-    user: 'franky', // Replace with your database username
-    password: 'admin', // Replace with your database password
-    database: 'project' // // Replace with your database Name
+var connection = new Connection(config);
+connection.on('connect', function(err) {
+    // If no error, then good to proceed.  
+    console.log("Connected");
 });
 
-conn.connect(function(err) {
-    if (err) throw err;
-    console.log('Database is connected successfully!');
-});
+connection.connect();
 
-
-
-module.exports = conn;
-
-*/
+module.exports = connection;

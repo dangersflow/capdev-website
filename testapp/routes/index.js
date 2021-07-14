@@ -2,6 +2,7 @@ var express = require('express');
 const { state } = require('../routes/database');
 var router = express.Router();
 var db = require('../routes/database');
+const { Connection, Request } = require("tedious");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -19,6 +20,24 @@ router.get('/database', function(req, res, next) {
         res.render('database', { projectInfo: json });
     });
     */
+
+    request = new Request("SELECT * FROM projects",
+        (err, rowCount) => {
+            if (err) {
+                console.error(err.message);
+            } else {
+                console.log(`${rowCount} row(s) returned`)
+            }
+        });
+
+    request.on("row", columns => {
+        columns.forEach(column => {
+            console.log("%s\t%s", column.metadata.colName, column.value);
+        });
+    });
+
+    db.execSql(request);
+
     res.render('database');
 });
 
