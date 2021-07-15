@@ -1,3 +1,5 @@
+
+
 body {
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -12,4 +14,18 @@ a {
 
 .main-form {
     padding-top: 30px;
+}
+
+.form-title {
+    padding-top: 20px;
+    text-align: center;
+    color: #343a40;
+}
+
+div.slant, .graphs{
+    background-color: rgb(241, 240, 240);
+    /* background: linear-gradient(135deg, rgba(69, 154, 252, 0.65), rgba(255, 255, 255, 0.6)); */
+}
+.graphs{
+    padding: 2vmax;
 }
