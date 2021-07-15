@@ -41,7 +41,9 @@ router.get('/database', function(req, res, next) {
     res.render('database');
 });
 
-
+router.get('/graphs', function(req, res, next) {
+    res.render('graphs');
+});
 /*
 router.update("/update", function(req, res, next) {
 
@@ -59,52 +61,102 @@ router.post('/create', function(req, res, next) {
     var title = req.body.title;
     var statement = req.body.statement;
     var milestone = req.body.milestone;
-    var stakeholder = req.body.stakeholder;
-    var resource_sponsor = req.body.resource_sponsor;
-    var aquisition_sponsor = req.body.acquisition_sponsor;
-    var onr_po = req.body.onr_po;
+    var testevent = req.body.testevent;
+    var LAO = req.body.LAO;
+    var LAOPOC = req.body.LAOPOC;
+    var ResourceSponsor = req.body.ResourceSponsor;
+    var ResourceSponsorPOC = req.body.ResourceSponsorPOC;
+    var AquisitionSponsor = req.body.AquisitionSponsor;
+    var AquisitionSponsorPOC = req.body.AquisitionSponsorPOC;
+    var ProgramOffice = req.body.ProgramOffice;
+    var CAPGAP1 = req.body.CAPGAP1;
+    var CAPGAP2 = req.body.CAPGAP2;
+    var CAPGAP3 = req.body.CAPGAP3;
+    var RASponsor = req.body.RASponsor;
+    var STobj = req.body.STobj;
+    var TRL = req.body.TRL;
+    var TRLJ = req.body.TRLJ;
     var cost = req.body.cost;
-    var project_type = req.body.project_type;
-    var operation_concept = req.body.operation_concept;
+    var projectType = req.body.projectType;
+    var status = req.body.status;
+    var commanderIntent = req.body.commanderIntent;
+
     var created_at = new Date().toISOString;
 
     title = title.replace("'", "\\'");
     statement = statement.replace("'", "\\'");
-    milestone = stakeholder.replace("'", "\\'");
-    resource_sponsor = resource_sponsor.replace("'", "\\'");
-    aquisition_sponsor = aquisition_sponsor.replace("'", "\\'");
-    onr_po = onr_po.replace("'", "\\'");
-    project_type = project_type.replace("'", "\\'");
-    operation_concept = operation_concept.replace("'", "\\'");
+    milestone = milestone.replace("'", "\\'");
+    testevent = testevent.replace("'", "\\'");
+    LAO = LAO.replace("'", "\\'");
+    LAOPOC = LAOPOC.replace("'", "\\'");
+    ResourceSponsor = ResourceSponsor.replace("'", "\\'");
+    ResourceSponsorPOC = ResourceSponsorPOC.replace("'", "\\'");
+    AquisitionSponsor = AquisitionSponsor.replace("'", "\\'");
+    AquisitionSponsorPOC = AquisitionSponsorPOC.replace("'", "\\'");
+    ProgramOffice = ProgramOffice.replace("'", "\\'");
+    CAPGAP1 = CAPGAP1.replace("'", "\\'");
+    CAPGAP2 = CAPGAP2.replace("'", "\\'");
+    CAPGAP3 = CAPGAP3.replace("'", "\\'");
+    RASponsor = RASponsor.replace("'", "\\'");
+    STobj = STobj.replace("'", "\\'");
+    TRL = TRL.replace("'", "\\'");
+    TRLJ = TRLJ.replace("'", "\\'");
+    cost = cost.replace("'", "\\'");
+    projectType = projectType.replace("'", "\\'");
+    status = status.replace("'", "\\'");
+    commanderIntent = commanderIntent.replace("'", "\\'");
+
+
 
     var sql = "INSERT INTO project.projectinfo (" +
-        "CREATOR," +
-        "DATECREATED," +
-        "TITLE," +
-        "STATEMENT," +
-        "NEXTMILESTONE," +
-        "STAKEHOLDERS," +
-        "RESOURCESPONS," +
-        "AQUISITIONSPONS," +
-        "ONRPO," +
-        "RASPONSOR," +
-        "COST," +
-        "PROJECTTYPE," +
-        "CLASSIFICATION" +
+        "created," +
+        "title," +
+        "projectdesc," +
+        "commanderintent" +
+        "imageURL," +
+        "nextmilestone," +
+        "nexttestevent," +
+        "lao," +
+        "laopoc," +
+        "resourcesponsor," +
+        "resourcepoc," +
+        "acquisitionsponsor," +
+        "acquisitionpoc," +
+        "programoffice," +
+        "capabilitygap1," +
+        "capabilitygap2," +
+        "capabilitygap3," +
+        "rasponsor," +
+        "stobjectives," +
+        "trl," +
+        "trljustification," +
+        "cost," +
+        "projecttype," +
+        "projectstatus," +
         ") VALUES(" +
-        "'" + "TEST" + "'," +
         "NOW()," +
         "'" + title + "'," +
         "'" + statement + "'," +
+        "'" + commanderIntent + "'," +
         "'" + milestone + "'," +
-        "'" + stakeholder + "'," +
-        "'" + resource_sponsor + "'," +
-        "'" + aquisition_sponsor + "'," +
-        "'" + onr_po + "'," +
-        "'" + "'," +
+        "'" + testevent + "'," +
+        "'" + LAO + "'," +
+        "'" + LAOPOC + "'," +
+        "'" + ResourceSponsor + "'," +
+        "'" + ResourceSponsorPOC + "'," +
+        "'" + AquisitionSponsor + "'," +
+        "'" + AquisitionSponsorPOC + "'," +
+        "'" + ProgramOffice + "'," +
+        "'" + CAPGAP1 + "'," +
+        "'" + CAPGAP2 + "'," +
+        "'" + CAPGAP3 + "'," +
+        "'" + RASponsor + "'," +
+        "'" + STobj + "'," +
+        "'" + TRL + "'," +
+        "'" + TRLJ + "'," +
         "'" + cost + "'," +
-        "'" + project_type + "'," +
-        "'" + operation_concept + "'" +
+        "'" + projectType + "'," +
+        "'" + status + "'" +
         ");";
 
     sql = sql.replace(/[\n\r\t]/g, "");

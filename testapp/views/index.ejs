@@ -11,11 +11,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
     <title>
-        <%= title %>
+        CAPDEV Tracker
     </title>
     <link rel='stylesheet' href='stylesheets/style.css' />
 </head>
-
 <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">CAPDEV</a>
@@ -30,6 +29,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/database">Database</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/graphs">Graph display</a>
+                </li>
         </div>
     </div>
 </nav>
@@ -38,7 +40,7 @@
     <center class="title">
         <div>
             <h1>
-                <%= title %>
+                CAPDEV Tracker
             </h1>
         </div>
     </center>
@@ -62,17 +64,100 @@
                         <input type="text" class="form-control" id="input1" name="title" required>
                     </div>
                     <div class="form-group" style="padding-bottom: 20px;">
-                        <label for="input2" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Problem Statement</label>
+                        <label for="input2" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Project Description</label>
                         <textarea class="form-control" id="input2" rows="3" name="statement" required></textarea>
                     </div>
                     <div class="form-group" style="padding-bottom: 20px;">
-                        <label for="input3" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Next Milestone</label>
-                        <textarea class="form-control" id="input3" rows="3" name="milestone" required></textarea>
+                        <label for="input20" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Commander's Intent 3.0 Alignment</label>
+                        <select class="form-control" id="input20" name="commanderIntent" required>
+                            <option value="" selected>Select the alignment</option>
+                            <option value="FNC">Enhance Strategic Deterrence</option>
+                            <option value="INP">Integrate Combat Power with the Joint Force</option>
+                            <option value="Tech">Enable All-Domain Maneuver Warfare</option>
+                        </select>
+                        <small class="form-text text-muted">Select the alignment from the list</small>
                     </div>
                     <div class="form-group" style="padding-bottom: 20px;">
-                        <label for="input4" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Stakeholders</label>
-                        <select class="form-control" id="input4" name="stakeholder" required>
-                            <option value="" selected>Select a Stakeholder...</option>
+                        <label for="input21" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Project Quad Chart (Enter URL to the image)</label>
+                        <textarea class="form-control" id="input21" rows="3" name="quadchart" required></textarea>
+                    </div>
+                    <div class="form-group" style="padding-bottom: 20px;">
+                        <label for="input3" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Next Milestone</label>
+                        <textarea class="form-control" id="input3" rows="3" name="milestone" ></textarea>
+                    </div>
+                    <div class="form-group" style="padding-bottom: 20px;">
+                        <label for="input4" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Next Test Event</label>
+                        <textarea class="form-control" id="input4" rows="3" name="testevent" ></textarea>
+                    </div>
+                    <div class="form-group" style="padding-bottom: 20px;">
+                        <label for="input5" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Lead Activity/Organization</label>
+                        <textarea class="form-control" id="input5" rows="3" name="LAO" ></textarea>
+                    </div>
+                    <div class="form-group" style="padding-bottom: 20px;">
+                        <label for="input6" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Lead Activity/Organization POC</label>
+                        <textarea class="form-control" id="input6" rows="3" name="LAOPOC" ></textarea>
+                    </div>
+                    <div class="form-group" style="padding-bottom: 20px;">
+                        <label for="input7" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Resource Sponsor</label>
+                        <select class="form-control" id="input7" name="ResourceSponsor" >
+                            <option value="" selected>Select a Resource Sponsor</option>
+                            <option value="OPNAV95">OPNAV 95</option>
+                            <option value="OPNAV96">OPNAV 96</option>
+                            <option value="OPNAV97">OPNAV97</option>
+                            <option value="OPNAVN2N6">OPNAV N2N6</option>
+                        </select>
+                        <small class="form-text text-muted">Select a Resource Sponsor from the list</small>
+                    </div>
+                    <div class="form-group" style="padding-bottom: 20px;">
+                        <label for="input8" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Resource Sponsor POC</label>
+                        <textarea class="form-control" id="input8" rows="3" name="ResourceSponsorPOC" ></textarea>
+                    </div>
+                    <div class="form-group" style="padding-bottom: 20px;">
+                        <label for="input9" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Resource Sponsor</label>
+                        <select class="form-control" id="input9" name="AquisitionSponsor" >
+                            <option value="" selected>Select an Aquisition Sponsor</option>
+                            <option value="PEOA">PEO Aircreaft Carriers</option>
+                            <option value="PEOS">PEO Subs</option>
+                            <option value="IWS">Integrated Warefare Systems</option>
+                            <option value="USC">PEO USC</option>
+                        </select>
+                        <small class="form-text text-muted">Select an Aquisition Sponsor from the list</small>
+                    </div>
+                    <div class="form-group" style="padding-bottom: 20px;">
+                        <label for="input10" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Aquisition Sponsor POC</label>
+                        <textarea class="form-control" id="input10" rows="3" name="AquisitionSponsorPOC" ></textarea>
+                    </div>
+                    <div class="form-group" style="padding-bottom: 20px;">
+                        <label for="input11" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Program Office</label>
+                        <select class="form-control" id="input11" name="ProgramOffice" >
+                            <option value="" selected>Select an Program Office</option>
+                            <option value="PMS397">PMS 397 - COLUMBIA Class Program Office</option>
+                            <option value="PMS401">PMS 401 - Submarine Acoustic Systems Program Office</option>
+                            <option value="PMS404">PMS 404 - Undersea Weapons Program Office </option>
+                            <option value="PMS415">PMS 415 - Undersea Defensive Warfare Systems Program Office </option>
+                            <option value="PMS425">PMS 425 - Submarine Combat and Weapons Control Program Office </option>
+                            <option value="PMS435">PMS 435 - Submarine Electromagnetic Systems Program Office </option>
+                            <option value="PMS450">PMS 450 - VIRGINIA Class Program Office</option>
+                            <option value="PMS485">PMS 485 - Maritime Surveillance Systems Program Office </option>
+                            <option value="PMS340">PMS 340 - NAVAL SPECIAL WARFARE</option>
+                            <option value="PMS406">PMS 406 - UNMANNED MARITIME SYSTEMS</option>
+                            <option value="PMS408">PMS 408 - EXPEDITIONARY MISSIONS</option>
+                            <option value="PMS420">PMS 420 - LCS MISSION MODULES</option>
+                            <option value="PMS495">PMS 495 - MINE WARFARE</option>
+                            <option value="PMS501">PMS 501 - LITTORAL COMBAT SHIPS</option>
+                            <option value="PMS505">PMS 505 - LCS FLEET INTRODUCTION & SUSTAINMENT</option>
+                            <option value="PMS515">PMS 515 - FRIGATE</option>
+                            <option value="PMS525">PMS 525 - INTERNATIONAL SMALL COMBATANTS</option>
+                            <option value="PMS312">PMS 312 - In-Service Aircraft Carrier Program</option>
+                            <option value="PMS378">PMS 378 - CVN 78 Class Program </option>
+                            <option value="PMS379">PMS 379 - CVN 79/80 Program </option>
+                        </select>
+                        <small class="form-text text-muted">Select a Program Office from the list</small>
+                    </div>
+                    <div class="form-group" style="padding-bottom: 20px;">
+                        <label for="input12" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Capability Gap 1</label>
+                        <select class="form-control" id="input12" name="CAPGAP1" >
+                            <option value="" selected>Select a Capability Gap</option>
                             <option value="JUONS">JUONS</option>
                             <option value="UONS">UONS</option>
                             <option value="ONS">ONS</option>
@@ -86,48 +171,106 @@
                             <option value="BCCP non POR">BCCP non POR</option>
                             <option value="FIPL">FIPL</option>
                         </select>
-                        <small class="form-text text-muted">Select a stakeholder from the list</small>
+                        <small class="form-text text-muted">Select a Capability Gap from the list</small>
                     </div>
                     <div class="form-group" style="padding-bottom: 20px;">
-                        <label for="input5" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Resource Sponsor</label>
-                        <input type="text" class="form-control" id="input5" name="resource_sponsor">
+                        <label for="input23" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Capability Gap 2</label>
+                        <select class="form-control" id="input23" name="CAPGAP2" >
+                            <option value="" selected>Select a Capability Gap</option>
+                            <option value="JUONS">JUONS</option>
+                            <option value="UONS">UONS</option>
+                            <option value="ONS">ONS</option>
+                            <option value="IPCLs">IPCLs</option>
+                            <option value="NCC IPLs">NCC IPLs</option>
+                            <option value="Warfare Capability Baselines">Warfare Capability Baselines</option>
+                            <option value="FBP/LSE AARs">FBP/LSE AARs</option>
+                            <option value="FLEX AARs">FLEX AARs</option>
+                            <option value="Concepts/CONOPS">Concepts/CONOPS</option>
+                            <option value="Deployment/Ex. LL">Deployment/Ex. LL</option>
+                            <option value="BCCP non POR">BCCP non POR</option>
+                            <option value="FIPL">FIPL</option>
+                        </select>
+                        <small class="form-text text-muted">Select a Capability Gap from the list</small>
                     </div>
                     <div class="form-group" style="padding-bottom: 20px;">
-                        <label for="input6" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Acquisition Sponsor</label>
-                        <input type="text" class="form-control" id="input6" name="acquisition_sponsor">
+                        <label for="input22" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Capability Gap 3</label>
+                        <select class="form-control" id="input22" name="CAPGAP3" >
+                            <option value="" selected>Select a Capability Gap</option>
+                            <option value="JUONS">JUONS</option>
+                            <option value="UONS">UONS</option>
+                            <option value="ONS">ONS</option>
+                            <option value="IPCLs">IPCLs</option>
+                            <option value="NCC IPLs">NCC IPLs</option>
+                            <option value="Warfare Capability Baselines">Warfare Capability Baselines</option>
+                            <option value="FBP/LSE AARs">FBP/LSE AARs</option>
+                            <option value="FLEX AARs">FLEX AARs</option>
+                            <option value="Concepts/CONOPS">Concepts/CONOPS</option>
+                            <option value="Deployment/Ex. LL">Deployment/Ex. LL</option>
+                            <option value="BCCP non POR">BCCP non POR</option>
+                            <option value="FIPL">FIPL</option>
+                        </select>
+                        <small class="form-text text-muted">Select a Capability Gap from the list</small>
                     </div>
                     <div class="form-group" style="padding-bottom: 20px;">
-                        <label for="input7" style="font-size: 1.3rem; padding-bottom: 0.5rem;">ONR PO</label>
-                        <input type="text" class="form-control" id="input7" name="onr_po">
+                        <label for="input13" style="font-size: 1.3rem; padding-bottom: 0.5rem;">R&A sponsor</label>
+                        <textarea class="form-control" id="input13" rows="3" name="RASponsor" ></textarea>
                     </div>
-                    <label for="input8" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Cost</label>
+
+                    <div class="form-group" style="padding-bottom: 20px;">
+                        <label for="input14" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Science and Technology Objectives</label>
+                        <textarea class="form-control" id="input14" rows="3" name="STobj" ></textarea>
+                    </div>
+
+                    <div class="form-group" style="padding-bottom: 20px;">
+                        <label for="input15" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Technology Readiness Level</label>
+                        <select class="form-control" id="input15" name="TRL" >
+                            <option value="" selected>Select the Technology Readiness Level</option>
+                            <option value="one">1 - Basic principles observed and reported.</option>
+                            <option value="UONS">2 - Technology concept and/or application formulated.</option>
+                            <option value="ONS">3 - Analytical and experimental critical function and/or characteristic proof of concept.</option>
+                            <option value="IPCLs">4 - Component and/or breadboard validation in laboratory environment.</option>
+                            <option value="NCC IPLs">5 - Component and/or breadboard validation in relevant environment.</option>
+                            <option value="Warfare Capability Baselines">6 - System/subsystem model or prototype demonstration in a relevant environment.</option>
+                            <option value="FBP/LSE AARs">7 - System prototype demonstration in an operational environment.</option>
+                            <option value="FLEX AARs">8 - Actual system completed and qualified through test and demonstration.</option>
+                            <option value="Concepts/CONOPS">9 - Actual system proven through successful mission operations.</option>
+                        </select>
+                        <small class="form-text text-muted">Select the Technology Readiness Level from the list</small>
+                    </div>
+
+                    <div class="form-group" style="padding-bottom: 20px;">
+                        <label for="input16" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Technology Readiness Level Justification</label>
+                        <textarea class="form-control" id="input16" rows="3" name="TRLJ" ></textarea>
+                    </div>
+
+                    <label for="input17" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Cost</label>
                     <div class="input-group" style="padding-bottom: 20px;">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupPrepend2">$</span>
                         </div>
-                        <input type="text" class="form-control" id="input8" aria-describedby="inputGroupPrepend2" name="cost" required>
+                        <input type="text" class="form-control" id="input17" aria-describedby="inputGroupPrepend2" name="cost" >
                     </div>
+
                     <div class="form-group" style="padding-bottom: 20px;">
-                        <label for="input4" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Type of Project</label>
-                        <select class="form-control" id="input4" name="project_type" required>
-                            <option value="" selected>Select a Type...</option>
-                            <option value="Science">Science</option>
-                            <option value="Technology">Technology</option>
-                            <option value="Research">Research</option>
-                            <option value="Weapons">Weapons</option>
+                        <label for="input18" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Type of Project</label>
+                        <select class="form-control" id="input18" name="projectType" >
+                            <option value="" selected>Select the Type of Project</option>
+                            <option value="FNC">FNC (Future Naval Capability)</option>
+                            <option value="INP">INP (Innovative Naval Prototype)</option>
+                            <option value="Tech">Tech Candidate</option>
+                            <option value="IRAD">Industry Internal Research and Development (IRAD)</option>
+                            <option value="NISE">Warfare Center Naval Innovative Science and Engineering (NISE)</option>
+                            <option value="DAI">Discovery and Invention (D&I)</option>
                         </select>
                         <small class="form-text text-muted">Select a project type from the list</small>
                     </div>
+
                     <div class="form-group" style="padding-bottom: 20px;">
-                        <label for="input4" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Concept of Operation</label>
-                        <select class="form-control" id="input4" name="operation_concept" required>
-                            <option value="" selected>Select a Concept...</option>
-                            <option value="Enhance Strategic Deterrence">Enhance Strategic Deterrence</option>
-                            <option value="Integrate Combat Power with the Joint Force">Integrate Combat Power with the Joint Force</option>
-                            <option value="Enable All-Domain Maneuver Warfare">Enable All-Domain Maneuver Warfare</option>
-                        </select>
-                        <small class="form-text text-muted">Select a concept from the list</small>
+                        <label for="input19" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Current Project status</label>
+                        <textarea class="form-control" id="input19" rows="3" name="status" ></textarea>
                     </div>
+
+                
                     <div style="display: flex; justify-content: right;">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
