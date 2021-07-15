@@ -60,6 +60,8 @@ router.post('/create', function(req, res, next) {
 
     var title = req.body.title;
     var statement = req.body.statement;
+    var commanderIntent = req.body.quadchart;
+    var quadchart = req.body.commanderIntent;
     var milestone = req.body.milestone;
     var testevent = req.body.testevent;
     var LAO = req.body.LAO;
@@ -79,12 +81,13 @@ router.post('/create', function(req, res, next) {
     var cost = req.body.cost;
     var projectType = req.body.projectType;
     var status = req.body.status;
-    var commanderIntent = req.body.commanderIntent;
+    
 
     var created_at = new Date().toISOString;
 
     title = title.replace("'", "\\'");
     statement = statement.replace("'", "\\'");
+    commanderIntent = commanderIntent.replace("'", "\\'");
     milestone = milestone.replace("'", "\\'");
     testevent = testevent.replace("'", "\\'");
     LAO = LAO.replace("'", "\\'");
@@ -104,7 +107,7 @@ router.post('/create', function(req, res, next) {
     cost = cost.replace("'", "\\'");
     projectType = projectType.replace("'", "\\'");
     status = status.replace("'", "\\'");
-    commanderIntent = commanderIntent.replace("'", "\\'");
+    
 
 
 
@@ -138,6 +141,7 @@ router.post('/create', function(req, res, next) {
         "'" + title + "'," +
         "'" + statement + "'," +
         "'" + commanderIntent + "'," +
+        "'" + quadchart + "'," +
         "'" + milestone + "'," +
         "'" + testevent + "'," +
         "'" + LAO + "'," +
