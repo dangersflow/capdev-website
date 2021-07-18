@@ -3,24 +3,19 @@ const { state } = require('../routes/database');
 var router = express.Router();
 var db = require('../routes/database');
 const { Connection, Request } = require("tedious");
+const { Sequelize, DataTypes } = require('sequelize');
+const { QueryTypes } = require('sequelize');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('index', { title: 'CAPDEV Tracker' });
 });
 
-router.get('/database', function(req, res, next) {
-    var mysql = "SELECT * FROM projectinfo";
-    /*
-    db.query(mysql, function(err, data) {
-        if (err) throw err;
-        console.log("table retrieved!");
-        var json = JSON.stringify(data);
-        console.log(json);
-        res.render('database', { projectInfo: json });
-    });
-    */
+router.get('/database', async function(req, res, next) {
+    var mysql = "SELECT * FROM projects";
+    var columnsObject;
 
+    /*
     request = new Request("SELECT * FROM projects",
         (err, rowCount) => {
             if (err) {
@@ -31,15 +26,45 @@ router.get('/database', function(req, res, next) {
         });
 
     request.on("row", columns => {
+        //console.log(columns);
+        columnsObject = columns;
+        var jsonString = JSON.stringify(columnsObject);
+        //console.log(jsonString);
+        /*
         columns.forEach(column => {
-            console.log("%s\t%s", column.metadata.colName, column.value);
+            //console.log("%s\t%s", column.metadata.colName, column.value);
         });
+        
     });
 
     db.execSql(request);
+    */
+    results = await executeQuery(mysql);
+    console.log(results);
 
-    res.render('database');
+    res.render('database', { results: JSON.stringify(results) });
+
 });
+
+async function executeQuery(mysql) {
+    const results = await db.query(mysql, {
+        logging: console.log,
+        plain: false,
+        raw: true,
+        type: QueryTypes.SELECT
+    });
+
+    //console.log(results);
+    console.log(JSON.stringify(results));
+    return results;
+
+}
+
+async function executeInsert(statement) {
+    await db.query(statement, {
+        type: QueryTypes.INSERT
+    });
+}
 
 router.get('/graphs', function(req, res, next) {
     res.render('graphs');
@@ -60,8 +85,8 @@ router.post('/create', function(req, res, next) {
 
     var title = req.body.title;
     var statement = req.body.statement;
-    var commanderIntent = req.body.quadchart;
-    var quadchart = req.body.commanderIntent;
+    var commanderIntent = req.body.commanderIntent;
+    var quadchart = req.body.quadchart;
     var milestone = req.body.milestone;
     var testevent = req.body.testevent;
     var LAO = req.body.LAO;
@@ -81,7 +106,7 @@ router.post('/create', function(req, res, next) {
     var cost = req.body.cost;
     var projectType = req.body.projectType;
     var status = req.body.status;
-    
+
 
     var created_at = new Date().toISOString;
 
@@ -107,37 +132,13 @@ router.post('/create', function(req, res, next) {
     cost = cost.replace("'", "\\'");
     projectType = projectType.replace("'", "\\'");
     status = status.replace("'", "\\'");
-    
 
 
 
-    var sql = "INSERT INTO project.projectinfo (" +
-        "created," +
-        "title," +
-        "projectdesc," +
-        "commanderintent" +
-        "imageURL," +
-        "nextmilestone," +
-        "nexttestevent," +
-        "lao," +
-        "laopoc," +
-        "resourcesponsor," +
-        "resourcepoc," +
-        "acquisitionsponsor," +
-        "acquisitionpoc," +
-        "programoffice," +
-        "capabilitygap1," +
-        "capabilitygap2," +
-        "capabilitygap3," +
-        "rasponsor," +
-        "stobjectives," +
-        "trl," +
-        "trljustification," +
-        "cost," +
-        "projecttype," +
-        "projectstatus," +
-        ") VALUES(" +
-        "NOW()," +
+
+    var sql = "INSERT INTO projects " +
+        "VALUES(" +
+        "GETDATE()," +
         "'" + title + "'," +
         "'" + statement + "'," +
         "'" + commanderIntent + "'," +
@@ -163,16 +164,51 @@ router.post('/create', function(req, res, next) {
         "'" + status + "'" +
         ");";
 
-    sql = sql.replace(/[\n\r\t]/g, "");
+    //sql = sql.replace(/[\n\r\t]/g, "");
+    console.log(sql);
+    /*
 
     db.query(sql, function(err, data) {
         if (err) throw err;
         console.log("record inserted!")
     });
 
+    */
+
+    /*
+    //make request object
+    request = new Request(sql,
+        function(err) {
+            if (err) {
+                console.log(err);
+            }
+        });
+
+    request.on('row', function(columns) {
+        columns.forEach(function(column) {
+            if (column.value === null) {
+                console.log('NULL');
+            } else {
+                console.log("Product id of inserted item is " + column.value);
+            }
+        });
+    });
+
+    // Close the connection after the final event emitted by the request, after the callback passes
+    request.on("requestCompleted", function(rowCount, more) {
+        //db.close();
+    });
+
+    //execute the request made
+    db.execSql(request);
+
+    */
+
+    executeInsert(sql);
+
     res.redirect('/database');
 
-    console.log(userDetails);
+    //console.log(userDetails);
 
 })
 
