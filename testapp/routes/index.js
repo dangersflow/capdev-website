@@ -80,7 +80,7 @@ router.delete("/delete", function(req, res, next) {
 
 */
 
-router.post('/create', function(req, res, next) {
+router.post('/create', async function(req, res, next) {
     const userDetails = req.body;
 
     var title = req.body.title;
@@ -204,7 +204,7 @@ router.post('/create', function(req, res, next) {
 
     */
 
-    executeInsert(sql);
+    await executeInsert(sql);
 
     res.redirect('/database');
 
