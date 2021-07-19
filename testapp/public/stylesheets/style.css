@@ -29,3 +29,7 @@ div.slant, .graphs{
 .graphs{
     padding: 2vmax;
 }
+
+.chart {
+    padding: 1.5vmax;
+}

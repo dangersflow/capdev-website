@@ -66,8 +66,14 @@ async function executeInsert(statement) {
     });
 }
 
-router.get('/graphs', function(req, res, next) {
-    res.render('graphs');
+router.get('/graphs', async function(req, res, next) {
+    var mysql = "SELECT * FROM projects";
+    var columnsObject;
+
+    results = await executeQuery(mysql);
+    console.log(results);
+
+    res.render('graphs', { results: JSON.stringify(results) });
 });
 /*
 router.update("/update", function(req, res, next) {
