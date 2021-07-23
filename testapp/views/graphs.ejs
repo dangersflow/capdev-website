@@ -208,6 +208,90 @@
         passedChart.update();
     };
 
+    function chartf(id, x, y, t) {
+                        var jsondata = JSON.parse('<%- results %>');
+                    
+                        var len = Object.keys(jsondata).length;
+
+                        
+                        var xaxis = document.getElementById(x);
+                        xaxis = xaxis.value;
+                        
+                        var yaxis = document.getElementById(y);
+                        yaxis = yaxis.value;
+
+                        var type = document.getElementById(t);
+                        type = type.value;
+
+                        var titlearr = []; // holds the title of resource sponsors
+                        var countarr = []; // holds all occurences of all resource sponsors
+                        var occarr = []; // holds the occurences of each resource sponsor
+                        var costarr = [];
+                        var backarr = [];
+                        var borderarr = [];
+                        var used = [];
+                        
+                        
+                        
+
+                        for(let i = 0; i < len; ++i) {  
+                            
+                                if(titlearr.indexOf(jsondata[i].commanderintent) === -1) {
+                                titlearr.push(jsondata[i].commanderintent);
+                                }
+                                countarr.push(jsondata[i].commanderintent);
+                            }
+
+
+                        if(yaxis == "cost") { //sums cost based on input
+                            for(let i = 0; i < titlearr.length; ++i){ 
+                                costarr.push(0);
+                                backarr.push(dynamicColors())
+                                borderarr.push(backarr[i].replace("0.2", "1.0"));
+                                for(let j = 11; j < len; ++j) {
+                                    if(jsondata[j].commanderintent == titlearr[i]) {
+                                        costarr[i] += jsondata[j].cost;
+                                    }
+                                    
+                                    
+                                }
+                            }
+                            used = costarr;
+                        }
+                        else if(yaxis == "occ") {
+                            for(let i = 0; i < titlearr.length; ++i) {
+                                occarr.push(countOccurrences(countarr, countarr[i]));
+                                backarr.push(dynamicColors())
+                                borderarr.push(backarr[i].replace("0.2", "1.0"));
+                            }
+                            used = occarr;
+                        }
+
+                        var ctx = document.getElementById(id);
+                        var chart = new Chart(ctx, {
+                            type: type,
+                            data: {
+                                labels: titlearr,
+                                datasets: [{
+                                    labels: titlearr,
+                                    data: used,
+                                    backgroundColor: backarr,
+                                    borderColor: borderarr,
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                legend:{
+                                    position: 'right'
+                                },
+                                layout: {
+                                    padding: 10
+                                },
+                            },
+                        });
+                        return chart;
+                    };
+
 
 </script>
 
@@ -235,278 +319,163 @@
 
 <body>
     <div class="main-form" >
-        <div class = "row">
-            <div>
-                <label for="c1xaxis">X axis</label>
-
-                <select name="c1xaxis" id="c1xaxis">
-                    <option value="3.0 alignment">Commander's Intent 3.0 Alignment</option>
-                    <option value="Resource sponsor">Resource sponsor</option>
-                    <option value="Acquisition sponsor">Acquisition sponsor</option>
-                    <option value="Program office">Program office</option>
-                    <option value="Capability Gap">Capability gap</option>
-                    <option value="Technology Readiness Level">Technology Readiness Level</option>
-                    <option value="Project type">Project type</option>
-                    
-                    
-                </select>
-
-                <label for="c1yaxis">Y axis</label>
-                <select name="c1yaxis" id="c1yaxis">
-                    <option value="occ">Occurences</option>
-                    <option value="cost">Cost</option>
-                </select>
-
-                <label for="c1type">Type of graph</label>
-                <select name="c1type" id="c1type">
-                    <option value="bar">Bar chart</option>
-                    <option value="pie">Pie chart</option>
-                    <option value="doughnut">Doughnut chart</option>
-                    <option value="line">Line chart</option>
-                    <option value="polarArea">Polar area chart</option>
-                </select>
-            </div>
-            
-            
-
-            <div class="card">
-                <div class ="chart">
-                    <canvas id="chart1" width="400" height="400"></canvas>
+        <div class ="row"> <!-- Row 1 -->
+            <div class="card"> <!-- Chart 1 -->
+                <div>
+                    <label for="c1xaxis">X axis</label>
+                    <select name="c1xaxis" id="c1xaxis">
+                        <option value="3.0 alignment">Commander's Intent 3.0 Alignment</option>
+                        <option value="Resource sponsor">Resource sponsor</option>
+                        <option value="Acquisition sponsor">Acquisition sponsor</option>
+                        <option value="Program office">Program office</option>
+                        <option value="Capability Gap">Capability gap</option>
+                        <option value="Technology Readiness Level">Technology Readiness Level</option>
+                        <option value="Project type">Project type</option>
+                    </select>
+    
+                    <label for="c1yaxis">Y axis</label>
+                    <select name="c1yaxis" id="c1yaxis">
+                        <option value="occ">Occurences</option>
+                        <option value="cost">Cost</option>
+                    </select>
+    
+                    <label for="c1type">Type of graph</label>
+                    <select name="c1type" id="c1type">
+                        <option value="bar">Bar chart</option>
+                        <option value="pie">Pie chart</option>
+                        <option value="doughnut">Doughnut chart</option>
+                        <option value="line">Line chart</option>
+                        <option value="polarArea">Polar area chart</option> 
+                    </select>
                 </div>
-                <script>
-//create graph section
-                        var jsondata = JSON.parse('<%- results %>');
-                    
-                        var len = Object.keys(jsondata).length;
-
-                        
-                        var xaxis = document.getElementById('c1xaxis');
-                        xaxis = xaxis.value;
-                        
-                        var yaxis = document.getElementById('c1yaxis');
-                        yaxis = yaxis.value;
-
-                        var type = document.getElementById('c1type');
-                        type = type.value;
-
-                        var titlearr = []; // holds the title of resource sponsors
-                        var countarr = []; // holds all occurences of all resource sponsors
-                        var occarr = []; // holds the occurences of each resource sponsor
-                        var costarr = [];
-                        var backarr = [];
-                        var borderarr = [];
-                        var used = [];
-                        
-                        
-                        
-
-                        for(let i = 0; i < len; ++i) {  
-                            
-                                if(titlearr.indexOf(jsondata[i].commanderintent) === -1) {
-                                titlearr.push(jsondata[i].commanderintent);
-                                }
-                                countarr.push(jsondata[i].commanderintent);
-                            }
-
-
-                        if(yaxis == "cost") { //sums cost based on input
-                            for(let i = 0; i < titlearr.length; ++i){ 
-                                costarr.push(0);
-                                backarr.push(dynamicColors())
-                                borderarr.push(backarr[i].replace("0.2", "1.0"));
-                                for(let j = 11; j < len; ++j) {
-                                    if(jsondata[j].commanderintent == titlearr[i]) {
-                                        costarr[i] += jsondata[j].cost;
-                                    }
-                                    
-                                    
-                                }
-                            }
-                            used = costarr;
-                        }
-                        else if(yaxis == "occ") {
-                            for(let i = 0; i < titlearr.length; ++i) {
-                                occarr.push(countOccurrences(countarr, countarr[i]));
-                                backarr.push(dynamicColors())
-                                borderarr.push(backarr[i].replace("0.2", "1.0"));
-                            }
-                            used = occarr;
-                        }
-
-                        var ctx = document.getElementById('chart1');
-                        var chart1 = new Chart(ctx, {
-                            type: type,
-                            data: {
-                                labels: titlearr,
-                                datasets: [{
-                                    labels: titlearr,
-                                    data: used,
-                                    backgroundColor: backarr,
-                                    borderColor: borderarr,
-                                    borderWidth: 1
-                                }]
-                            },
-                            options: {
-                                legend:{
-                                    position: 'right'
-                                },
-                                layout: {
-                                    padding: 10
-                                },
-                            },
-                        });
-// update graph section 
-                        const c1xselection = document.getElementById("c1xaxis");
-                        const c1yselection = document.getElementById("c1yaxis");
-                        const c1newType = document.getElementById("c1type");
-
-                        c1xselection.addEventListener('change', function() {
-                            updateData.call(chart1, c1xselection.value, c1yselection.value);
-                        });
-                        c1yselection.addEventListener('change', function() {
-                            updateData.call(chart1, c1xselection.value, c1yselection.value);
-                        });  
-                        c1newType.addEventListener('change', function() {
-                            updateType.call(chart1, c1newType);
-                        });
-                </script>
-            </div>
-            <div>
-                <label for="c2xaxis">X axis</label>
-
-                <select name="c2xaxis" id="c2xaxis">
-                    <option value="3.0 alignment">Commander's Intent 3.0 Alignment</option>
-                    <option value="Resource sponsor">Resource sponsor</option>
-                    <option value="Acquisition sponsor">Acquisition sponsor</option>
-                    <option value="Program office">Program office</option>
-                    <option value="Capability Gap">Capability gap</option>
-                    <option value="Technology Readiness Level">Technology Readiness Level</option>
-                    <option value="Project type">Project type</option>
-                    
-                    
-                </select>
-
-                <label for="c2yaxis">Y axis</label>
-                <select name="c2yaxis" id="c2yaxis">
-                    <option value="occ">Occurences</option>
-                    <option value="cost">Cost</option>
-                </select>
-
-                <label for="c2type">Type of graph</label>
-                <select name="c2type" id="c2type">
-                    <option value="bar">Bar chart</option>
-                    <option value="pie">Pie chart</option>
-                    <option value="doughnut">Doughnut chart</option>
-                    <option value="line">Line chart</option>
-                    <option value="polarArea">Polar area chart</option>
-                </select>
-            </div>
-            
-            
-
-            <div class="card">
                 <div class ="chart">
-                    <canvas id="chart2" width="400" height="400"></canvas>
+                    <canvas id="chart1" width="400" height="400">
+                        <script>
+                            var chart1var = chartf("chart1", "c1xaxis", "c1yaxis", "c1type");
+
+                            const c1xselection = document.getElementById("c1xaxis");
+                            const c1yselection = document.getElementById("c1yaxis");
+                            const c1newType = document.getElementById("c1type");
+
+                            c1xselection.addEventListener('change', function() {
+                            updateData.call(chart1var, c1xselection.value, c1yselection.value);
+                            });
+                            c1yselection.addEventListener('change', function() {
+                                    updateData.call(chart1var, c1xselection.value, c1yselection.value);
+                            });  
+                            c1newType.addEventListener('change', function() {
+                                    updateType.call(chart1var, c1newType);
+                            });
+                        </script>
+                    </canvas>
                 </div>
-                <script>
-//create graph section
-                        var jsondata = JSON.parse('<%- results %>');
-                    
-                        var len = Object.keys(jsondata).length;
+            </div>
 
-                        
-                        var xaxis = document.getElementById('c1xaxis');
-                        xaxis = xaxis.value;
-                        
-                        var yaxis = document.getElementById('c1yaxis');
-                        yaxis = yaxis.value;
-
-                        var type = document.getElementById('c1type');
-                        type = type.value;
-
-                        var titlearr = []; // holds the title of resource sponsors
-                        var countarr = []; // holds all occurences of all resource sponsors
-                        var occarr = []; // holds the occurences of each resource sponsor
-                        var costarr = [];
-                        var backarr = [];
-                        var borderarr = [];
-                        var used = [];
-                        
-                        
-                        
-
-                        for(let i = 0; i < len; ++i) {  
+            <div class="card"> <!-- Chart 2 -->
+                <div>
+                    <label for="c2xaxis">X axis</label>
+                    <select name="c2xaxis" id="c2xaxis">
+                        <option value="3.0 alignment">Commander's Intent 3.0 Alignment</option>
+                        <option value="Resource sponsor">Resource sponsor</option>
+                        <option value="Acquisition sponsor">Acquisition sponsor</option>
+                        <option value="Program office">Program office</option>
+                        <option value="Capability Gap">Capability gap</option>
+                        <option value="Technology Readiness Level">Technology Readiness Level</option>
+                        <option value="Project type">Project type</option> 
+                    </select>
+        
+                    <label for="c2yaxis">Y axis</label>
+                    <select name="c2yaxis" id="c2yaxis">
+                        <option value="occ">Occurences</option>
+                        <option value="cost">Cost</option>
+                    </select>
+        
+                    <label for="c2type">Type of graph</label>
+                    <select name="c2type" id="c2type">
+                        <option value="bar">Bar chart</option>
+                        <option value="pie">Pie chart</option>
+                        <option value="doughnut">Doughnut chart</option>
+                        <option value="line">Line chart</option>
+                        <option value="polarArea">Polar area chart</option>
+                    </select>
+                </div>
+                <div class = "chart">
+                    <canvas id="chart2" width="400" height="400">
+                        <script>
+                            var chart2var = chartf("chart2", "c2xaxis", "c2yaxis", "c2type");
                             
-                                if(titlearr.indexOf(jsondata[i].commanderintent) === -1) {
-                                titlearr.push(jsondata[i].commanderintent);
-                                }
-                                countarr.push(jsondata[i].commanderintent);
-                            }
-
-
-                        if(yaxis == "cost") { //sums cost based on input
-                            for(let i = 0; i < titlearr.length; ++i){ 
-                                costarr.push(0);
-                                backarr.push(dynamicColors())
-                                borderarr.push(backarr[i].replace("0.2", "1.0"));
-                                for(let j = 11; j < len; ++j) {
-                                    if(jsondata[j].commanderintent == titlearr[i]) {
-                                        costarr[i] += jsondata[j].cost;
-                                    }
-                                    
-                                    
-                                }
-                            }
-                            used = costarr;
-                        }
-                        else if(yaxis == "occ") {
-                            for(let i = 0; i < titlearr.length; ++i) {
-                                occarr.push(countOccurrences(countarr, countarr[i]));
-                                backarr.push(dynamicColors())
-                                borderarr.push(backarr[i].replace("0.2", "1.0"));
-                            }
-                            used = occarr;
-                        }
-
-                        var ctx = document.getElementById('chart2');
-                        var chart2 = new Chart(ctx, {
-                            type: type,
-                            data: {
-                                labels: titlearr,
-                                datasets: [{
-                                    labels: titlearr,
-                                    data: used,
-                                    backgroundColor: backarr,
-                                    borderColor: borderarr,
-                                    borderWidth: 1
-                                }]
-                            },
-                            options: {
-                                legend:{
-                                    position: 'right'
-                                },
-                                layout: {
-                                    padding: 10
-                                },
-                            },
-                        });
-// update graph section 
-                        const c2xselection = document.getElementById("c2xaxis");
-                        const c2yselection = document.getElementById("c2yaxis");
-                        const c2newType = document.getElementById("c2type");
-
-                        c2xselection.addEventListener('change', function() {
-                            updateData.call(chart2, c2xselection.value, c2yselection.value);
-                        });
-                        c2yselection.addEventListener('change', function() {
-                            updateData.call(chart2, c2xselection.value, c2yselection.value);
-                        });  
-                        c2newType.addEventListener('change', function() {
-                            updateType.call(chart2, c2newType);
-                        });
-                </script>
+                            const c2xselection = document.getElementById("c2xaxis");
+                            const c2yselection = document.getElementById("c2yaxis");
+                            const c2newType = document.getElementById("c2type");
+        
+                            c2xselection.addEventListener('change', function() {
+                                updateData.call(chart2var, c2xselection.value, c2yselection.value);
+                            });
+                            c2yselection.addEventListener('change', function() {
+                                updateData.call(chart2var, c2xselection.value, c2yselection.value);
+                            });  
+                            c2newType.addEventListener('change', function() {
+                                updateType.call(chart2var, c2newType);
+                            });
+                        </script>
+                    </canvas>
+                </div>
             </div>
         </div>
+        <div class = "row"> <!-- Row 2 -->
+            <div class="card"> <!-- Chart 3 -->
+                <div>
+                    <label for="c3xaxis">X axis</label>
+
+                    <select name="c3xaxis" id="c3xaxis">
+                        <option value="3.0 alignment">Commander's Intent 3.0 Alignment</option>
+                        <option value="Resource sponsor">Resource sponsor</option>
+                        <option value="Acquisition sponsor">Acquisition sponsor</option>
+                        <option value="Program office">Program office</option>
+                        <option value="Capability Gap">Capability gap</option>
+                        <option value="Technology Readiness Level">Technology Readiness Level</option>
+                        <option value="Project type">Project type</option> 
+                    </select>
+    
+                    <label for="c3yaxis">Y axis</label>
+                    <select name="c3yaxis" id="c3yaxis">
+                        <option value="occ">Occurences</option>
+                        <option value="cost">Cost</option>
+                    </select>
+    
+                    <label for="c3type">Type of graph</label>
+                    <select name="c3type" id="c3type">
+                        <option value="bar">Bar chart</option>
+                        <option value="pie">Pie chart</option>
+                        <option value="doughnut">Doughnut chart</option>
+                        <option value="line">Line chart</option>
+                        <option value="polarArea">Polar area chart</option>
+                    </select>
+                </div>
+                
+                <div class ="chart">
+                    <canvas id="chart3" width="400" height="400">
+                        <script>
+                            var chart3var = chartf("chart3", "c3xaxis", "c3yaxis", "c3type");
+        
+                            const c3xselection = document.getElementById("c3xaxis");
+                            const c3yselection = document.getElementById("c3yaxis");
+                            const c3newType = document.getElementById("c3type");
+        
+                            c3xselection.addEventListener('change', function() {
+                                updateData.call(chart3var, c3xselection.value, c3yselection.value);
+                            });
+                            c3yselection.addEventListener('change', function() {
+                                updateData.call(chart3var, c3xselection.value, c3yselection.value);
+                            });  
+                            c3newType.addEventListener('change', function() {
+                                updateType.call(chart3var, c3newType);
+                            });
+                
+                        </script>
+                    </canvas>
+                </div>
+            </div>
         </div>
     </div>
 </body>
