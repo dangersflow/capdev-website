@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='stylesheets/style.css' />
     <title>Database Page</title>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -39,45 +39,310 @@
     </div>
 </nav>
 
-<body>
+<body style="background-color: #F1F0F0;">
     <center>
-        <h1>
-            Database page
-        </h1>
+        <div style="padding-top: 2%; padding-bottom: 2%; ">
+            <div class="card" style="width:40rem; padding: 20px; border-radius: 20px;">
+                <div class="card-body">
+                    <h1 class="card-title">Database Page</h1>
+                </div>
+            </div>
+        </div>
+
     </center>
 
-    <table id="table" data-toolbar=".toolbar" data-height="400" data-virtual-scroll="true" data-show-columns="true" data-show-toggle="true" data-search="true">
-        <thead>
-            <tr>
-                <th data-field="id" data-sortable="true">ID</th>
-                <th data-field="created" data-sortable="true">Created At</th>
-                <th data-field="title">Title</th>
-                <th data-field="projectdesc">Project Description</th>
-                <th data-field="commanderintent">Commander's Intent 3.0 Alignment</th>
-                <th data-field="imageURL">Project Quad Chart</th>
-                <th data-field="nextmilestone">Next Milestone</th>
-                <th data-field="nexttestevent">Next Test Event</th>
-                <th data-field="lao">Lead Activity/Organization</th>
-                <th data-field="laopc">Lead Activity/Organization POC</th>
-                <th data-field="resourcesponsor">Resource Sponsor</th>
-                <th data-field="resourcepoc">Resource Sponsor POC</th>
-                <th data-field="acquisitionsponsor">Acquisition Sponsor</th>
-                <th data-field="acquisitionpoc">Acquisition Sponsor POC</th>
-                <th data-field="programoffice">Program Office</th>
-                <th data-field="capabilitygap1">Capability Gap 1</th>
-                <th data-field="capabilitygap2">Capability Gap 2</th>
-                <th data-field="capabilitygap3">Capability Gap 3</th>
-                <th data-field="rasponsor">R&A Sponsor(s)</th>
-                <th data-field="stobjectives">Science and Technology Objectives</th>
-                <th data-field="trl">Technology Readiness Level</th>
-                <th data-field="trljustification">TRL Justification</th>
-                <th data-field="cost">Cost</th>
-                <th data-field="projecttype">Project Type</th>
-                <th data-field="projectstatus">Current Project Status</th>
+    <center>
+        <div>
+            <div style="padding-top: 2%; padding-bottom: 2%; ">
+                <div class="card" style="padding: 20px; border-radius: 20px; width: 75%;">
+                    <div class="card-body">
+                        <div id="toolbar">
+                            <button id="remove" class="btn btn-danger">
+                              <i class="fa fa-trash"></i> Delete
+                            </button>
+                        </div>
+                        <table id="table" data-toolbar="#toolbar" data-show-columns="true" data-click-to-select="false" data-show-toggle="true" data-search="true" data-pagination="true" data-show-export="true" data-show-footer="true" data-id-field="id" data-show-columns-toggle-all="true"
+                            data-click-to-select="false">
+                            <thead>
+                                <tr>
+                                    <th data-field="state" data-checkbox="true"></th>
+                                    <th data-field="icons" data-events="window.operateEvents" data-align="center">Actions</th>
+                                    <th data-field="id" data-sortable="true">ID</th>
+                                    <th data-field="created" data-sortable="true">Created At</th>
+                                    <th data-field="title">Title</th>
+                                    <th data-field="projectdesc">Project Description</th>
+                                    <th data-field="commanderintent">Commander's Intent 3.0 Alignment</th>
+                                    <th data-field="imageURL">Project Quad Chart</th>
+                                    <th data-field="nextmilestone">Next Milestone</th>
+                                    <th data-field="nexttestevent">Next Test Event</th>
+                                    <th data-field="lao">Lead Activity/Organization</th>
+                                    <th data-field="laopc">Lead Activity/Organization POC</th>
+                                    <th data-field="resourcesponsor">Resource Sponsor</th>
+                                    <th data-field="resourcepoc">Resource Sponsor POC</th>
+                                    <th data-field="acquisitionsponsor">Acquisition Sponsor</th>
+                                    <th data-field="acquisitionpoc">Acquisition Sponsor POC</th>
+                                    <th data-field="programoffice">Program Office</th>
+                                    <th data-field="capabilitygap1">Capability Gap 1</th>
+                                    <th data-field="capabilitygap2">Capability Gap 2</th>
+                                    <th data-field="capabilitygap3">Capability Gap 3</th>
+                                    <th data-field="rasponsor">R&A Sponsor(s)</th>
+                                    <th data-field="stobjectives">Science and Technology Objectives</th>
+                                    <th data-field="trl">Technology Readiness Level</th>
+                                    <th data-field="trljustification">TRL Justification</th>
+                                    <th data-field="cost">Cost</th>
+                                    <th data-field="projecttype">Project Type</th>
+                                    <th data-field="projectstatus">Current Project Status</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </center>
 
-            </tr>
-        </thead>
-    </table>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/update" method="POST" style="padding-right: 20px; padding-left: 20px;">
+                        <div class="form-group" style="padding-bottom: 20px;">
+                            <label for="input1" style="font-size: 1.3rem; padding-bottom: 0.5rem;">ID</label>
+                            <input type="text" class="form-control" id="inputid" name="id" readonly>
+                        </div>
+                        <div class="form-group" style="padding-bottom: 20px;">
+                            <label for="input1" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Project Title</label>
+                            <input type="text" class="form-control" id="input1" name="title" required>
+                        </div>
+                        <div class="form-group" style="padding-bottom: 20px;">
+                            <label for="input2" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Project Description</label>
+                            <textarea class="form-control" id="input2" rows="3" name="statement" required></textarea>
+                        </div>
+                        <div class="form-group" style="padding-bottom: 20px;">
+                            <label for="input20" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Commander's Intent 3.0 Alignment</label>
+                            <select class="form-control" id="input20" name="commanderIntent" required>
+                            <option value="" selected>Select the alignment</option>
+                            <option value="Enhance Strategic Deterrence">Enhance Strategic Deterrence</option>
+                            <option value="Integrate Combat Power with the Joint Force">Integrate Combat Power with the Joint Force</option>
+                            <option value="Enable All-Domain Maneuver Warfare">Enable All-Domain Maneuver Warfare</option>
+                        </select>
+                            <small class="form-text text-muted">Select the alignment from the list</small>
+                        </div>
+                        <div class="form-group" style="padding-bottom: 20px;">
+                            <label for="input21" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Project Quad Chart (Enter URL to the image)</label>
+                            <textarea class="form-control" id="inputurl" rows="3" name="quadchart" required></textarea>
+                        </div>
+                        <div class="form-group" style="padding-bottom: 20px;">
+                            <label for="input3" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Next Milestone</label>
+                            <textarea class="form-control" id="input3" rows="3" name="milestone"></textarea>
+                        </div>
+                        <div class="form-group" style="padding-bottom: 20px;">
+                            <label for="input4" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Next Test Event</label>
+                            <textarea class="form-control" id="input4" rows="3" name="testevent"></textarea>
+                        </div>
+                        <div class="form-group" style="padding-bottom: 20px;">
+                            <label for="input5" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Lead Activity/Organization</label>
+                            <textarea class="form-control" id="input5" rows="3" name="LAO"></textarea>
+                        </div>
+                        <div class="form-group" style="padding-bottom: 20px;">
+                            <label for="input6" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Lead Activity/Organization POC</label>
+                            <textarea class="form-control" id="input6" rows="3" name="LAOPOC"></textarea>
+                        </div>
+                        <div class="form-group" style="padding-bottom: 20px;">
+                            <label for="input7" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Resource Sponsor</label>
+                            <select class="form-control" id="input7" name="ResourceSponsor">
+                            <option value="" selected>Select a Resource Sponsor</option>
+                            <option value="OPNAV95">OPNAV 95</option>
+                            <option value="OPNAV96">OPNAV 96</option>
+                            <option value="OPNAV97">OPNAV 97</option>
+                            <option value="OPNAVN2N6">OPNAV N2N6</option>
+                        </select>
+                            <small class="form-text text-muted">Select a Resource Sponsor from the list</small>
+                        </div>
+                        <div class="form-group" style="padding-bottom: 20px;">
+                            <label for="input8" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Resource Sponsor POC</label>
+                            <textarea class="form-control" id="input8" rows="3" name="ResourceSponsorPOC"></textarea>
+                        </div>
+                        <div class="form-group" style="padding-bottom: 20px;">
+                            <label for="input9" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Resource Sponsor</label>
+                            <select class="form-control" id="input9" name="AquisitionSponsor">
+                            <option value="" selected>Select an Aquisition Sponsor</option>
+                            <option value="PEOA">PEO Aircreaft Carriers</option>
+                            <option value="PEOS">PEO Subs</option>
+                            <option value="IWS">Integrated Warefare Systems</option>
+                            <option value="USC">PEO USC</option>
+                        </select>
+                            <small class="form-text text-muted">Select an Aquisition Sponsor from the list</small>
+                        </div>
+                        <div class="form-group" style="padding-bottom: 20px;">
+                            <label for="input10" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Aquisition Sponsor POC</label>
+                            <textarea class="form-control" id="input10" rows="3" name="AquisitionSponsorPOC"></textarea>
+                        </div>
+                        <div class="form-group" style="padding-bottom: 20px;">
+                            <label for="input11" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Program Office</label>
+                            <select class="form-control" id="input11" name="ProgramOffice">
+                            <option value="" selected>Select an Program Office</option>
+                            <option value="PMS397">PMS 397 - COLUMBIA Class Program Office</option>
+                            <option value="PMS401">PMS 401 - Submarine Acoustic Systems Program Office</option>
+                            <option value="PMS404">PMS 404 - Undersea Weapons Program Office </option>
+                            <option value="PMS415">PMS 415 - Undersea Defensive Warfare Systems Program Office </option>
+                            <option value="PMS425">PMS 425 - Submarine Combat and Weapons Control Program Office </option>
+                            <option value="PMS435">PMS 435 - Submarine Electromagnetic Systems Program Office </option>
+                            <option value="PMS450">PMS 450 - VIRGINIA Class Program Office</option>
+                            <option value="PMS485">PMS 485 - Maritime Surveillance Systems Program Office </option>
+                            <option value="PMS340">PMS 340 - NAVAL SPECIAL WARFARE</option>
+                            <option value="PMS406">PMS 406 - UNMANNED MARITIME SYSTEMS</option>
+                            <option value="PMS408">PMS 408 - EXPEDITIONARY MISSIONS</option>
+                            <option value="PMS420">PMS 420 - LCS MISSION MODULES</option>
+                            <option value="PMS495">PMS 495 - MINE WARFARE</option>
+                            <option value="PMS501">PMS 501 - LITTORAL COMBAT SHIPS</option>
+                            <option value="PMS505">PMS 505 - LCS FLEET INTRODUCTION & SUSTAINMENT</option>
+                            <option value="PMS515">PMS 515 - FRIGATE</option>
+                            <option value="PMS525">PMS 525 - INTERNATIONAL SMALL COMBATANTS</option>
+                            <option value="PMS312">PMS 312 - In-Service Aircraft Carrier Program</option>
+                            <option value="PMS378">PMS 378 - CVN 78 Class Program </option>
+                            <option value="PMS379">PMS 379 - CVN 79/80 Program </option>
+                        </select>
+                            <small class="form-text text-muted">Select a Program Office from the list</small>
+                        </div>
+                        <div class="form-group" style="padding-bottom: 20px;">
+                            <label for="input12" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Capability Gap 1</label>
+                            <select class="form-control" id="input12" name="CAPGAP1">
+                            <option value="" selected>Select a Capability Gap</option>
+                            <option value="JUONS">JUONS</option>
+                            <option value="UONS">UONS</option>
+                            <option value="ONS">ONS</option>
+                            <option value="IPCLs">IPCLs</option>
+                            <option value="NCC IPLs">NCC IPLs</option>
+                            <option value="Warfare Capability Baselines">Warfare Capability Baselines</option>
+                            <option value="FBP/LSE AARs">FBP/LSE AARs</option>
+                            <option value="FLEX AARs">FLEX AARs</option>
+                            <option value="Concepts/CONOPS">Concepts/CONOPS</option>
+                            <option value="Deployment/Ex. LL">Deployment/Ex. LL</option>
+                            <option value="BCCP non POR">BCCP non POR</option>
+                            <option value="FIPL">FIPL</option>
+                        </select>
+                            <small class="form-text text-muted">Select a Capability Gap from the list</small>
+                        </div>
+                        <div class="form-group" style="padding-bottom: 20px;">
+                            <label for="input23" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Capability Gap 2</label>
+                            <select class="form-control" id="input23" name="CAPGAP2">
+                            <option value="" selected>Select a Capability Gap</option>
+                            <option value="JUONS">JUONS</option>
+                            <option value="UONS">UONS</option>
+                            <option value="ONS">ONS</option>
+                            <option value="IPCLs">IPCLs</option>
+                            <option value="NCC IPLs">NCC IPLs</option>
+                            <option value="Warfare Capability Baselines">Warfare Capability Baselines</option>
+                            <option value="FBP/LSE AARs">FBP/LSE AARs</option>
+                            <option value="FLEX AARs">FLEX AARs</option>
+                            <option value="Concepts/CONOPS">Concepts/CONOPS</option>
+                            <option value="Deployment/Ex. LL">Deployment/Ex. LL</option>
+                            <option value="BCCP non POR">BCCP non POR</option>
+                            <option value="FIPL">FIPL</option>
+                        </select>
+                            <small class="form-text text-muted">Select a Capability Gap from the list</small>
+                        </div>
+                        <div class="form-group" style="padding-bottom: 20px;">
+                            <label for="input22" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Capability Gap 3</label>
+                            <select class="form-control" id="input22" name="CAPGAP3">
+                            <option value="" selected>Select a Capability Gap</option>
+                            <option value="JUONS">JUONS</option>
+                            <option value="UONS">UONS</option>
+                            <option value="ONS">ONS</option>
+                            <option value="IPCLs">IPCLs</option>
+                            <option value="NCC IPLs">NCC IPLs</option>
+                            <option value="Warfare Capability Baselines">Warfare Capability Baselines</option>
+                            <option value="FBP/LSE AARs">FBP/LSE AARs</option>
+                            <option value="FLEX AARs">FLEX AARs</option>
+                            <option value="Concepts/CONOPS">Concepts/CONOPS</option>
+                            <option value="Deployment/Ex. LL">Deployment/Ex. LL</option>
+                            <option value="BCCP non POR">BCCP non POR</option>
+                            <option value="FIPL">FIPL</option>
+                        </select>
+                            <small class="form-text text-muted">Select a Capability Gap from the list</small>
+                        </div>
+                        <div class="form-group" style="padding-bottom: 20px;">
+                            <label for="input13" style="font-size: 1.3rem; padding-bottom: 0.5rem;">R&A sponsor</label>
+                            <textarea class="form-control" id="input13" rows="3" name="RASponsor"></textarea>
+                        </div>
+
+                        <div class="form-group" style="padding-bottom: 20px;">
+                            <label for="input14" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Science and Technology Objectives</label>
+                            <textarea class="form-control" id="input14" rows="3" name="STobj"></textarea>
+                        </div>
+
+                        <div class="form-group" style="padding-bottom: 20px;">
+                            <label for="input15" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Technology Readiness Level</label>
+                            <select class="form-control" id="input15" name="TRL">
+                            <option value="" selected>Select the Technology Readiness Level</option>
+                            <option value="1 - Basic principles observed and reported.">1 - Basic principles observed and reported.</option>
+                            <option value="2 - Technology concept and/or application formulated.">2 - Technology concept and/or application formulated.</option>
+                            <option value="3 - Analytical and experimental critical function and/or characteristic proof of concept.">3 - Analytical and experimental critical function and/or characteristic proof of concept.</option>
+                            <option value="4 - Component and/or breadboard validation in laboratory environment.">4 - Component and/or breadboard validation in laboratory environment.</option>
+                            <option value="5 - Component and/or breadboard validation in relevant environment.">5 - Component and/or breadboard validation in relevant environment.</option>
+                            <option value="6 - System/subsystem model or prototype demonstration in a relevant environment.">6 - System/subsystem model or prototype demonstration in a relevant environment.</option>
+                            <option value="7 - System prototype demonstration in an operational environment.">7 - System prototype demonstration in an operational environment.</option>
+                            <option value="8 - Actual system completed and qualified through test and demonstration.">8 - Actual system completed and qualified through test and demonstration.</option>
+                            <option value="9 - Actual system proven through successful mission operations.">9 - Actual system proven through successful mission operations.</option>
+                        </select>
+                            <small class="form-text text-muted">Select the Technology Readiness Level from the list</small>
+                        </div>
+
+                        <div class="form-group" style="padding-bottom: 20px;">
+                            <label for="input16" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Technology Readiness Level Justification</label>
+                            <textarea class="form-control" id="input16" rows="3" name="TRLJ"></textarea>
+                        </div>
+
+                        <label for="input17" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Cost</label>
+                        <div class="input-group" style="padding-bottom: 20px;">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupPrepend2">$</span>
+                            </div>
+                            <input type="text" class="form-control" id="input17" aria-describedby="inputGroupPrepend2" name="cost">
+                        </div>
+
+                        <div class="form-group" style="padding-bottom: 20px;">
+                            <label for="input18" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Type of Project</label>
+                            <select class="form-control" id="input18" name="projectType">
+                            <option value="" selected>Select the Type of Project</option>
+                            <option value="FNC">FNC (Future Naval Capability)</option>
+                            <option value="INP">INP (Innovative Naval Prototype)</option>
+                            <option value="Tech Candidate">Tech Candidate</option>
+                            <option value="IRAD">Industry Internal Research and Development (IRAD)</option>
+                            <option value="NISE">Warfare Center Naval Innovative Science and Engineering (NISE)</option>
+                            <option value="DAI">Discovery and Invention (D&I)</option>
+                        </select>
+                            <small class="form-text text-muted">Select a project type from the list</small>
+                        </div>
+
+                        <div class="form-group" style="padding-bottom: 20px;">
+                            <label for="input19" style="font-size: 1.3rem; padding-bottom: 0.5rem;">Current Project status</label>
+                            <textarea class="form-control" id="input19" rows="3" name="status"></textarea>
+                        </div>
+
+
+                        <div style="display: flex; justify-content: right;">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -87,6 +352,18 @@
     <script>
         var $table = $('#table');
         var columns = JSON.parse('<%- results %>');
+        var editRow;
+
+        for (var i = 0; i < columns.length; i++) {
+            columns[i]["icons"] = [
+                '<a class="like" href="javascript:void(0)" title="Update" style="padding-right: 7px;" data-toggle="modal" data-target="#exampleModal">',
+                '<i class="fa fa-pen"></i>',
+                '</a>  ',
+                '<a class="remove" href="javascript:void(0)" title="Delete">',
+                '<i class="fa fa-trash"></i>',
+                '</a>'
+            ].join('');
+        }
 
         console.log(columns);
 
@@ -102,7 +379,96 @@
             $('#append').click(function() {
                 $table.bootstrapTable('append', getData(10000, true))
             })
+
+            $('#remove').click(function() {
+                var selections = $table.bootstrapTable('getSelections');
+                console.log(selections)
+            })
+
+            $('#exampleModal').on('show.bs.modal', function(e) {
+                $("#inputid").val(editRow['id']);
+                $("#input1").val(editRow['title']);
+                $("#input2").val(editRow['projectdesc']);
+                $("#input20").val(editRow['commanderintent']);
+                $("#inputurl").val(editRow['imageURL']);
+                $("#input3").val(editRow['nextmilestone']);
+                $("#input4").val(editRow['nexttestevent']);
+                $("#input5").val(editRow['lao']);
+                $("#input6").val(editRow['laopc']);
+                $("#input7").val(editRow['resourcesponsor']);
+                $("#input8").val(editRow['resourcepoc']);
+                $("#input9").val(editRow['acquisitionsponsor']);
+                $("#input10").val(editRow['acquisitionpoc']);
+                $("#input11").val(editRow['programoffice']);
+                $("#input12").val(editRow['capabilitygap1']);
+                $("#input21").val(editRow['capabilitygap2']);
+                $("#input22").val(editRow['capabilitygap3']);
+                $("#input13").val(editRow['rasponsor']);
+                $("#input14").val(editRow['stobjectives']);
+                $("#input15").val(editRow['trl']);
+                $("#input16").val(editRow['trljustification']);
+                $("#input17").val(editRow['cost']);
+                $("#input18").val(editRow['projecttype']);
+                $("#input19").val(editRow['projectstatus']);
+
+            })
         })
+
+        window.operateEvents = {
+            'click .like': function(e, value, row, index) {
+                //alert('You click like action, row: ' + JSON.stringify(row))
+                editRow = row;
+            },
+            'click .remove': function(e, value, row, index) {
+                $table.bootstrapTable('remove', {
+                    field: 'id',
+                    values: [row.id]
+                })
+            }
+        }
+
+        function operateFormatter(value, row, index) {
+            return [
+                '<a class="like" href="javascript:void(0)" title="Update">',
+                '<i class="fa fa-heart"></i>',
+                '</a>  ',
+                '<a class="remove" href="javascript:void(0)" title="Delete">',
+                '<i class="fa fa-trash"></i>',
+                '</a>'
+            ].join('')
+        }
+
+        function rowStyle() {
+            return {
+                css: {
+                    color: '#EAE8FF'
+                }
+            }
+        }
+
+        function headerStyle() {
+            return {
+                css: {
+                    color: '#EAE8FF'
+                }
+            }
+        }
+
+        function footerStyle() {
+            return {
+                css: {
+                    color: '#EAE8FF'
+                }
+            }
+        }
+
+        function cellStyle() {
+            return {
+                css: {
+                    color: '#EAE8FF',
+                }
+            }
+        }
     </script>
 </body>
 
