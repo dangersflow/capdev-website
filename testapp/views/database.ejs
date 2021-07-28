@@ -41,6 +41,11 @@
 
 <body style="background-color: #F1F0F0;">
     <center>
+        <div class="alert alert-success " role="alert" id="close">
+            Record successfully deleted!
+        </div>
+    </center>
+    <center>
         <div style="padding-top: 2%; padding-bottom: 2%; ">
             <div class="card" style="width:40rem; padding: 20px; border-radius: 20px;">
                 <div class="card-body">
@@ -350,6 +355,8 @@
     <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
 
     <script>
+        $("#close").hide();
+
         var $table = $('#table');
         var columns = JSON.parse('<%- results %>');
         var editRow;
@@ -420,12 +427,22 @@
                 editRow = row;
             },
             'click .remove': function(e, value, row, index) {
-                $table.bootstrapTable('remove', {
-                    field: 'id',
-                    values: [row.id]
-                })
+                $.post('/delete', // url
+                    {
+                        myData: row.id
+                    }, // data to be submit
+                    function(data, status, jqXHR) { // success callback
+                        $('p').append('status: ' + status + ', data: ' + data);
+                        $table.bootstrapTable('remove', {
+                            field: 'id',
+                            values: [row.id]
+                        })
+                        $("#close").show(500);
+                        $("#close").delay(2000).hide(500);
+                    })
             }
         }
+
 
         function operateFormatter(value, row, index) {
             return [

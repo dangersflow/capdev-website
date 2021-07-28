@@ -72,6 +72,12 @@ async function executeUpdate(statement) {
     });
 }
 
+async function executeDelete(statement) {
+    await db.query(statement, {
+        type: QueryTypes.DELETE
+    });
+}
+
 router.get('/graphs', async function(req, res, next) {
     var mysql = "SELECT * FROM projects";
     var columnsObject;
@@ -91,6 +97,16 @@ router.delete("/delete", function(req, res, next) {
 })
 
 */
+
+router.post('/delete', async function(req, res, next) {
+    let id = req.body.myData;
+
+    let sql = "DELETE FROM projects WHERE id = " + id + ";";
+
+    console.log(sql);
+
+    await executeDelete(sql);
+})
 
 router.post('/update', async function(req, res, next) {
     const userDetails = req.body;
@@ -123,28 +139,32 @@ router.post('/update', async function(req, res, next) {
 
     var created_at = new Date().toISOString;
 
-    title = title.replace("'", "\\'");
-    statement = statement.replace("'", "\\'");
-    commanderIntent = commanderIntent.replace("'", "\\'");
-    milestone = milestone.replace("'", "\\'");
-    testevent = testevent.replace("'", "\\'");
-    LAO = LAO.replace("'", "\\'");
-    LAOPOC = LAOPOC.replace("'", "\\'");
-    ResourceSponsor = ResourceSponsor.replace("'", "\\'");
-    ResourceSponsorPOC = ResourceSponsorPOC.replace("'", "\\'");
-    AquisitionSponsor = AquisitionSponsor.replace("'", "\\'");
-    AquisitionSponsorPOC = AquisitionSponsorPOC.replace("'", "\\'");
-    ProgramOffice = ProgramOffice.replace("'", "\\'");
-    CAPGAP1 = CAPGAP1.replace("'", "\\'");
-    CAPGAP2 = CAPGAP2.replace("'", "\\'");
-    CAPGAP3 = CAPGAP3.replace("'", "\\'");
-    RASponsor = RASponsor.replace("'", "\\'");
-    STobj = STobj.replace("'", "\\'");
-    TRL = TRL.replace("'", "\\'");
-    TRLJ = TRLJ.replace("'", "\\'");
-    cost = cost.replace("'", "\\'");
-    projectType = projectType.replace("'", "\\'");
-    status = status.replace("'", "\\'");
+    try {
+        title = title.replace("'", "\\'");
+        statement = statement.replace("'", "\\'");
+        commanderIntent = commanderIntent.replace("'", "\\'");
+        milestone = milestone.replace("'", "\\'");
+        testevent = testevent.replace("'", "\\'");
+        LAO = LAO.replace("'", "\\'");
+        LAOPOC = LAOPOC.replace("'", "\\'");
+        ResourceSponsor = ResourceSponsor.replace("'", "\\'");
+        ResourceSponsorPOC = ResourceSponsorPOC.replace("'", "\\'");
+        AquisitionSponsor = AquisitionSponsor.replace("'", "\\'");
+        AquisitionSponsorPOC = AquisitionSponsorPOC.replace("'", "\\'");
+        ProgramOffice = ProgramOffice.replace("'", "\\'");
+        CAPGAP1 = CAPGAP1.replace("'", "\\'");
+        CAPGAP2 = CAPGAP2.replace("'", "\\'");
+        CAPGAP3 = CAPGAP3.replace("'", "\\'");
+        RASponsor = RASponsor.replace("'", "\\'");
+        STobj = STobj.replace("'", "\\'");
+        TRL = TRL.replace("'", "\\'");
+        TRLJ = TRLJ.replace("'", "\\'");
+        cost = cost.replace("'", "\\'");
+        projectType = projectType.replace("'", "\\'");
+        status = status.replace("'", "\\'");
+    } catch (error) {
+        console.log(error);
+    }
 
     var sql = "UPDATE projects " +
         "SET " +
