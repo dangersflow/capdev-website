@@ -30,7 +30,7 @@ connection.connect();
 var Sequelize = require('sequelize');
 const { QueryTypes } = require('sequelize');
 
-var sequelize = new Sequelize('testcapdevdb', 'xxx', 'xxx', {
+var sequelize = new Sequelize('testcapdevdb', 'frank', 'testcapdev123!', {
     host: 'testcapdev.database.windows.net',
     dialect: 'mssql',
     pool: {

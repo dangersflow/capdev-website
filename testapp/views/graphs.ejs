@@ -41,154 +41,156 @@
 
     function updateData(xval, yval) {
                             
-                            var jsondata = JSON.parse('<%- results %>');
-                            console.log(jsondata);
-                            var len = Object.keys(jsondata).length;
+        var jsondata = JSON.parse('<%- results %>');
+        console.log(jsondata);
+        var len = Object.keys(jsondata).length;
 
-                            var titlearr = [];
-                            var countarr = [];
-                            var costarr = [];
-                            var used = [];
-                            var backarr = [];
-                            var borderarr = [];
+        var titlearr = [];
+        var countarr = [];
+        var costarr = [];
+        var used = [];
+        var backarr = [];
+        var borderarr = [];
 
-                            for(let i = 0; i < len; ++i) {
-                                if(xval == "Resource sponsor"){
-                                    if(jsondata[i].resourcesponsor == "") {
-                                        jsondata[i].resourcesponsor = "Undefined";
-                                    }
-                                    if(titlearr.indexOf(jsondata[i].resourcesponsor) === -1) {
-                                    titlearr.push(jsondata[i].resourcesponsor);
-                                    }
-                                    countarr.push(jsondata[i].resourcesponsor);
-                                }  
-                                else if(xval == "3.0 alignment") {
-                                    if(jsondata[i].commanderintent == "") {
-                                        jsondata[i].commanderintent = "Undefined";
-                                    }
-                                    if(titlearr.indexOf(jsondata[i].commanderintent) === -1) {
-                                        titlearr.push(jsondata[i].commanderintent);
-                                        }
-                                        countarr.push(jsondata[i].commanderintent);
-                                }
-                                else if(xval == "Acquisition sponsor") {
-                                    if(jsondata[i].acquisitionsponsor == "") {
-                                        jsondata[i].acquisitionsponsor = "Undefined";
-                                    }
-                                    if(titlearr.indexOf(jsondata[i].acquisitionsponsor) === -1) {
-                                        titlearr.push(jsondata[i].acquisitionsponsor);
-                                        }
-                                        countarr.push(jsondata[i].acquisitionsponsor);
-                                }
-                                else if(xval == "Program office") {
-                                    if(jsondata[i].programoffice == "") {
-                                        jsondata[i].programoffice = "Undefined";
-                                    }
-                                    if(titlearr.indexOf(jsondata[i].programoffice) === -1) {
-                                        titlearr.push(jsondata[i].programoffice);
-                                        }
-                                        countarr.push(jsondata[i].programoffice);
-                                }
-                                else if(xval == "Capability Gap") {
-                                    if(jsondata[i].capabilitygap1 == "") {
-                                        jsondata[i].capabilitygap1 = "Undefined";
-                                    }
-                                    if(titlearr.indexOf(jsondata[i].capabilitygap1) === -1) {
-                                        titlearr.push(jsondata[i].capabilitygap1);
-                                        }
-                                        countarr.push(jsondata[i].capabilitygap1);
-                                }
-                                else if(xval == "Technology Readiness Level") {
-                                    if(jsondata[i].trl == "") {
-                                        jsondata[i].trl = "Undefined";
-                                    }
-                                    if(titlearr.indexOf(jsondata[i].trl) === -1) {
-                                        titlearr.push(jsondata[i].trl);
-                                        }
-                                        countarr.push(jsondata[i].trl);
-                                }
-                                else if(xval == "Project type") {
-                                    if(jsondata[i].projecttype == "") {
-                                        jsondata[i].projecttype = "Undefined";
-                                    }
-                                    if(titlearr.indexOf(jsondata[i].projecttype) === -1) {
-                                        titlearr.push(jsondata[i].projecttype);
-                                        }
-                                        countarr.push(jsondata[i].projecttype);
-                                }
-                            }
+        for(let i = 0; i < len; ++i) {
+            if(xval == "Resource sponsor"){
+                if(jsondata[i].resourcesponsor == "") {
+                    jsondata[i].resourcesponsor = "Undefined";
+                }
+                if(titlearr.indexOf(jsondata[i].resourcesponsor) === -1) {
+                titlearr.push(jsondata[i].resourcesponsor);
+                }
+                countarr.push(jsondata[i].resourcesponsor);
+            }  
+            else if(xval == "3.0 alignment") {
+                if(jsondata[i].commanderintent == "") {
+                    jsondata[i].commanderintent = "Undefined";
+                }
+                if(titlearr.indexOf(jsondata[i].commanderintent) === -1) {
+                    titlearr.push(jsondata[i].commanderintent);
+                    }
+                    countarr.push(jsondata[i].commanderintent);
+            }
+            else if(xval == "Acquisition sponsor") {
+                if(jsondata[i].acquisitionsponsor == "") {
+                    jsondata[i].acquisitionsponsor = "Undefined";
+                }
+                if(titlearr.indexOf(jsondata[i].acquisitionsponsor) === -1) {
+                    titlearr.push(jsondata[i].acquisitionsponsor);
+                    }
+                    countarr.push(jsondata[i].acquisitionsponsor);
+            }
+            else if(xval == "Program office") {
+                if(jsondata[i].programoffice == "") {
+                    jsondata[i].programoffice = "Undefined";
+                }
+                if(titlearr.indexOf(jsondata[i].programoffice) === -1) {
+                    titlearr.push(jsondata[i].programoffice);
+                    }
+                    countarr.push(jsondata[i].programoffice);
+            }
+            else if(xval == "Capability Gap") {
+                if(jsondata[i].capabilitygap1 == "") {
+                    jsondata[i].capabilitygap1 = "Undefined";
+                }
+                if(titlearr.indexOf(jsondata[i].capabilitygap1) === -1) {
+                    titlearr.push(jsondata[i].capabilitygap1);
+                    }
+                    countarr.push(jsondata[i].capabilitygap1);
+            }
+            else if(xval == "Technology Readiness Level") {
+                if(jsondata[i].trl == "") {
+                    jsondata[i].trl = "Undefined";
+                }
+                if(titlearr.indexOf(jsondata[i].trl) === -1) {
+                    titlearr.push(jsondata[i].trl);
+                    }
+                    countarr.push(jsondata[i].trl);
+            }
+            else if(xval == "Project type") {
+                if(jsondata[i].projecttype == "") {
+                    jsondata[i].projecttype = "Undefined";
+                }
+                if(titlearr.indexOf(jsondata[i].projecttype) === -1) {
+                    titlearr.push(jsondata[i].projecttype);
+                    }
+                    countarr.push(jsondata[i].projecttype);
+            }
+        }
 
-                            if(yval == "cost") { //sums cost based on input
-                                for(let i = 0; i < titlearr.length; ++i){ 
-                                    costarr.push(0);
-                                    backarr.push(dynamicColors())
-                                    borderarr.push(backarr[i].replace("0.2", "1.0"));
-                                    for(let j = 11; j < len; ++j) {
-                                        if(xval == "Resource sponsor"){
-                                            console.log(jsondata[j].cost);
-                                            if(jsondata[j].resourcesponsor == titlearr[i]) {
-                                            costarr[i] += jsondata[j].cost;
-                                            }
-                                        }
-                                        else if(xval == "3.0 alignment"){
-                                            if(jsondata[j].commanderintent == titlearr[i]) {
-                                            costarr[i] += jsondata[j].cost;
-                                            }
-                                        }
-                                        else if(xval == "Acquisition sponsor"){
-                                            if(jsondata[j].acquisitionsponsor == titlearr[i]) {
-                                            costarr[i] += jsondata[j].cost;
-                                            }
-                                        }
-                                        else if(xval == "Program office"){
-                                            if(jsondata[j].programoffice == titlearr[i]) {
-                                            costarr[i] += jsondata[j].cost;
-                                            }
-                                        }
-                                        else if(xval == "Capability Gap"){
-                                            if(jsondata[j].capabilitygap1 == titlearr[i]) {
-                                            costarr[i] += jsondata[j].cost;
-                                            }
-                                        }
-                                        else if(xval == "Technology Readiness Level"){
-                                            if(jsondata[j].trl == titlearr[i]) {
-                                            costarr[i] += jsondata[j].cost;
-                                            }
-                                        }
-                                        else if(xval == "Project type"){
-                                            if(jsondata[j].projecttype == titlearr[i]) {
-                                            costarr[i] += jsondata[j].cost;
-                                            }
-                                        }
-                                    }
-                                }
-                                
-
-                            }
-                            
-                            else if(yval == "occ") {
-                                console.log(countarr);
-                                var checkedarr = [];
-                                var occarr = [];
-                                for(let i = 0; i < countarr.length; ++i) {
-                                    if(checkedarr.indexOf(countarr[i]) == -1) {
-                                        occarr.push(countOccurrences(countarr, countarr[i]));
-                                        checkedarr.push(countarr[i])
-                                    }
-                                    backarr.push(dynamicColors())
-                                    borderarr.push(backarr[i].replace("0.75", "1.0"));
-                                }
-                                
-                            }
-                        if(yval == "cost") {
-                            changeChart(xval, yval, costarr, titlearr, backarr, borderarr, 
-                            ((yval == "occ") ? 'Occurrences' : 'Cost') + " of projects by " + xval, this);
+        if(yval == "cost") { //sums cost based on input
+            for(let i = 0; i < titlearr.length; ++i){ 
+                costarr.push(0);
+                backarr.push(dynamicColors())
+                borderarr.push(backarr[i].replace("0.2", "1.0"));
+                
+                for(let j = 0; j < len; ++j) {
+                    console.log("here");
+                    if(xval == "Resource sponsor"){
+                        console.log(jsondata[j].cost);
+                        if(jsondata[j].resourcesponsor == titlearr[i]) {
+                        costarr[i] += jsondata[j].cost;
                         }
-                        else{
-                            changeChart(xval, yval, occarr, titlearr, backarr, borderarr, 
-                            ((yval == "occ") ? 'Occurrences' : 'Cost') + " of projects by " + xval, this);
+                    }
+                    else if(xval == "3.0 alignment"){
+                        
+                        if(jsondata[j].commanderintent == titlearr[i]) {
+                        costarr[i] += jsondata[j].cost;
                         }
-                    };
+                    }
+                    else if(xval == "Acquisition sponsor"){
+                        if(jsondata[j].acquisitionsponsor == titlearr[i]) {
+                        costarr[i] += jsondata[j].cost;
+                        }
+                    }
+                    else if(xval == "Program office"){
+                        if(jsondata[j].programoffice == titlearr[i]) {
+                        costarr[i] += jsondata[j].cost;
+                        }
+                    }
+                    else if(xval == "Capability Gap"){
+                        if(jsondata[j].capabilitygap1 == titlearr[i]) {
+                        costarr[i] += jsondata[j].cost;
+                        }
+                    }
+                    else if(xval == "Technology Readiness Level"){
+                        if(jsondata[j].trl == titlearr[i]) {
+                        costarr[i] += jsondata[j].cost;
+                        }
+                    }
+                    else if(xval == "Project type"){
+                        if(jsondata[j].projecttype == titlearr[i]) {
+                        costarr[i] += jsondata[j].cost;
+                        }
+                    }
+                }
+            }
+        }
+        
+        else if(yval == "occ") {
+            console.log(countarr);
+            var checkedarr = [];
+            var occarr = [];
+            for(let i = 0; i < countarr.length; ++i) {
+                if(checkedarr.indexOf(countarr[i]) == -1) {
+                    occarr.push(countOccurrences(countarr, countarr[i]));
+                    checkedarr.push(countarr[i])
+                }
+                backarr.push(dynamicColors())
+                borderarr.push(backarr[i].replace("0.75", "1.0"));
+            }
+            
+        }
+        
+        if(yval == "cost") {
+            changeChart(xval, yval, costarr, titlearr, backarr, borderarr, 
+            ((yval == "occ") ? 'Occurrences' : 'Cost') + " of projects by " + xval, this);
+        }
+        else{
+            changeChart(xval, yval, occarr, titlearr, backarr, borderarr, 
+            ((yval == "occ") ? 'Occurrences' : 'Cost') + " of projects by " + xval, this);
+        }
+    };
 
     function updateType(newType) {
         this.config.type = newType.value;
@@ -207,88 +209,91 @@
     };
 
     function chartf(id, x, y, t) {
-                        var jsondata = JSON.parse('<%- results %>');
-                    
-                        var len = Object.keys(jsondata).length;
+            var jsondata = JSON.parse('<%- results %>');
+        
+            var len = Object.keys(jsondata).length;
 
-                        
-                        var xaxis = document.getElementById(x);
-                        xaxis = xaxis.value;
-                        
-                        var yaxis = document.getElementById(y);
-                        yaxis = yaxis.value;
+            
+            var xaxis = document.getElementById(x);
+            xaxis = xaxis.value;
+            
+            var yaxis = document.getElementById(y);
+            yaxis = yaxis.value;
 
-                        var type = document.getElementById(t);
-                        type = type.value;
+            var type = document.getElementById(t);
+            type = type.value;
+            
+            console.log(yaxis);
+            var titlearr = []; // holds the title of resource sponsors
+            var countarr = []; // holds all occurences of all resource sponsors
+            var occarr = []; // holds the occurences of each resource sponsor
+            var costarr = [];
+            var backarr = [];
+            var borderarr = [];
+            var used = [];
+            
+            
+            
 
-                        var titlearr = []; // holds the title of resource sponsors
-                        var countarr = []; // holds all occurences of all resource sponsors
-                        var occarr = []; // holds the occurences of each resource sponsor
-                        var costarr = [];
-                        var backarr = [];
-                        var borderarr = [];
-                        var used = [];
-                        
-                        
-                        
+            for(let i = 0; i < len; ++i) {  
+                
+                    if(titlearr.indexOf(jsondata[i].commanderintent) === -1) {
+                    titlearr.push(jsondata[i].commanderintent);
+                    }
+                    countarr.push(jsondata[i].commanderintent);
+                }
 
-                        for(let i = 0; i < len; ++i) {  
-                            
-                                if(titlearr.indexOf(jsondata[i].commanderintent) === -1) {
-                                titlearr.push(jsondata[i].commanderintent);
-                                }
-                                countarr.push(jsondata[i].commanderintent);
-                            }
-
-
-                        if(yaxis == "cost") { //sums cost based on input
-                            for(let i = 0; i < titlearr.length; ++i){ 
-                                costarr.push(0);
-                                backarr.push(dynamicColors())
-                                borderarr.push(backarr[i].replace("0.2", "1.0"));
-                                for(let j = 11; j < len; ++j) {
-                                    if(jsondata[j].commanderintent == titlearr[i]) {
-                                        costarr[i] += jsondata[j].cost;
-                                    }
-                                    
-                                    
-                                }
-                            }
-                            used = costarr;
+            
+            if(yaxis == "cost") { //sums cost based on input
+                for(let i = 0; i < titlearr.length; ++i){ 
+                    costarr.push(0);
+                    backarr.push(dynamicColors())
+                    borderarr.push(backarr[i].replace("0.2", "1.0"));
+                    for(let j = 0; j < len; ++j) {
+                        if(jsondata[j].commanderintent == titlearr[i]) {
+                            costarr[i] += jsondata[j].cost;
                         }
-                        else if(yaxis == "occ") {
-                            for(let i = 0; i < titlearr.length; ++i) {
-                                occarr.push(countOccurrences(countarr, countarr[i]));
-                                backarr.push(dynamicColors())
-                                borderarr.push(backarr[i].replace("0.2", "1.0"));
-                            }
-                            used = occarr;
-                        }
+                        
+                        
+                    }
+                }
+                used = costarr;
+            }
+            
 
-                        var ctx = document.getElementById(id);
-                        var chart = new Chart(ctx, {
-                            type: type,
-                            data: {
-                                labels: titlearr,
-                                datasets: [{
-                                    labels: titlearr,
-                                    data: used,
-                                    backgroundColor: backarr,
-                                    borderColor: borderarr,
-                                    borderWidth: 1
-                                }]
-                            },
-                            options: {
-                                legend:{
-                                    position: 'right'
-                                },
-                                layout: {
-                                    padding: 10
-                                },
-                            },
-                        });
-                        return chart;
-                    };
+            else if(yaxis == "occ") {
+                for(let i = 0; i < titlearr.length; ++i) {
+                    occarr.push(countOccurrences(countarr, countarr[i]));
+                    backarr.push(dynamicColors())
+                    borderarr.push(backarr[i].replace("0.2", "1.0"));
+                }
+                used = occarr;
+            }
+
+            var ctx = document.getElementById(id);
+            var chart = new Chart(ctx, {
+                type: type,
+                data: {
+                    labels: titlearr,
+                    datasets: [{
+                        labels: titlearr,
+                        data: used,
+                        backgroundColor: backarr,
+                        borderColor: borderarr,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    legend:{
+                        position: 'right'
+                    },
+                    layout: {
+                        padding: 10
+                    },
+                },
+            });
+            return chart;
+        };
 
 
 </script>
@@ -468,6 +473,59 @@
                             });  
                             c3newType.addEventListener('change', function() {
                                 updateType.call(chart3var, c3newType);
+                            });
+                
+                        </script>
+                    </canvas>
+                </div>
+            </div>
+            <div class="card"> <!-- Chart 3 -->
+                <div>
+                    <label for="c4xaxis">X axis</label>
+
+                    <select name="c4xaxis" id="c4xaxis">
+                        <option value="3.0 alignment">Commander's Intent 3.0 Alignment</option>
+                        <option value="Resource sponsor">Resource sponsor</option>
+                        <option value="Acquisition sponsor">Acquisition sponsor</option>
+                        <option value="Program office">Program office</option>
+                        <option value="Capability Gap">Capability gap</option>
+                        <option value="Technology Readiness Level">Technology Readiness Level</option>
+                        <option value="Project type">Project type</option> 
+                    </select>
+    
+                    <label for="c4yaxis">Y axis</label>
+                    <select name="c4yaxis" id="c4yaxis">
+                        <option value="occ">Occurences</option>
+                        <option value="cost">Cost</option>
+                    </select>
+    
+                    <label for="c4type">Type of graph</label>
+                    <select name="c4type" id="c4type">
+                        <option value="bar">Bar chart</option>
+                        <option value="pie">Pie chart</option>
+                        <option value="doughnut">Doughnut chart</option>
+                        <option value="line">Line chart</option>
+                        <option value="polarArea">Polar area chart</option>
+                    </select>
+                </div>
+                
+                <div class ="chart">
+                    <canvas id="chart4" width="400" height="400">
+                        <script>
+                            var chart4var = chartf("chart4", "c3xaxis", "c3yaxis", "c3type");
+        
+                            const c4xselection = document.getElementById("c4xaxis");
+                            const c4yselection = document.getElementById("c4yaxis");
+                            const c4newType = document.getElementById("c4type");
+        
+                            c4xselection.addEventListener('change', function() {
+                                updateData.call(chart4var, c4xselection.value, c4yselection.value);
+                            });
+                            c4yselection.addEventListener('change', function() {
+                                updateData.call(chart4var, c4xselection.value, c4yselection.value);
+                            });  
+                            c4newType.addEventListener('change', function() {
+                                updateType.call(chart4var, c4newType);
                             });
                 
                         </script>
