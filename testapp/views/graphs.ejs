@@ -276,7 +276,7 @@
                 data: {
                     labels: titlearr,
                     datasets: [{
-                        labels: titlearr,
+                        label: "Occurences of projects by 3.0 Alignment",
                         data: used,
                         backgroundColor: backarr,
                         borderColor: borderarr,
@@ -351,8 +351,8 @@
                         <option value="polarArea">Polar area chart</option> 
                     </select>
                 </div>
-                <div class ="chart">
-                    <canvas id="chart1" width="400" height="400">
+                
+                    <canvas id="chart1">
                         <script>
                             var chart1var = chartf("chart1", "c1xaxis", "c1yaxis", "c1type");
 
@@ -371,7 +371,7 @@
                             });
                         </script>
                     </canvas>
-                </div>
+                
             </div>
 
             <div class="card"> <!-- Chart 2 -->
@@ -403,7 +403,7 @@
                     </select>
                 </div>
                 <div class = "chart">
-                    <canvas id="chart2" width="400" height="400">
+                    <canvas id="chart2">
                         <script>
                             var chart2var = chartf("chart2", "c2xaxis", "c2yaxis", "c2type");
                             
@@ -457,7 +457,7 @@
                 </div>
                 
                 <div class ="chart">
-                    <canvas id="chart3" width="400" height="400">
+                    <canvas id="chart3">
                         <script>
                             var chart3var = chartf("chart3", "c3xaxis", "c3yaxis", "c3type");
         
@@ -479,7 +479,7 @@
                     </canvas>
                 </div>
             </div>
-            <div class="card"> <!-- Chart 3 -->
+            <div class="card"> <!-- Chart 4 -->
                 <div>
                     <label for="c4xaxis">X axis</label>
 
@@ -510,9 +510,9 @@
                 </div>
                 
                 <div class ="chart">
-                    <canvas id="chart4" width="400" height="400">
+                    <canvas id="chart4">
                         <script>
-                            var chart4var = chartf("chart4", "c3xaxis", "c3yaxis", "c3type");
+                            var chart4var = chartf("chart4", "c4xaxis", "c4yaxis", "c4type");
         
                             const c4xselection = document.getElementById("c4xaxis");
                             const c4yselection = document.getElementById("c4yaxis");

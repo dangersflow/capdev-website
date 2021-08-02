@@ -31,12 +31,11 @@ div.slant, .graphs{
     padding: 2vmax;
 }
 
-.chart {
-    padding: 1.5vmax;
-}
 .card {
-    width:50rem; 
-    padding: 40px; 
-    border-radius: 20px;
+    height: 50%;
+    width: 49%;  
+    border-radius: 1%;
+    margin: .01%;
 }
+
 
