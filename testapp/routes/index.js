@@ -135,6 +135,7 @@ router.post('/update', async function(req, res, next) {
     var cost = req.body.cost;
     var projectType = req.body.projectType;
     var status = req.body.status;
+    var objectives = req.body.strgObjectives;
 
 
     var created_at = new Date().toISOString;
@@ -162,6 +163,7 @@ router.post('/update', async function(req, res, next) {
         cost = cost.replace("'", "\\'");
         projectType = projectType.replace("'", "\\'");
         status = status.replace("'", "\\'");
+        objectives = objectives.replace("'", "\\'");
     } catch (error) {
         console.log(error);
     }
@@ -190,7 +192,8 @@ router.post('/update', async function(req, res, next) {
         "trljustification = '" + TRLJ + "'," +
         "cost = '" + cost + "'," +
         "projecttype = '" + projectType + "'," +
-        "projectstatus = '" + status + "'" +
+        "projectstatus = '" + status + "'," +
+        "objectives = '" + objectives + "'" +
         " WHERE id = " + id + ";";
 
     //sql = sql.replace(/[\n\r\t]/g, "");
@@ -227,6 +230,7 @@ router.post('/create', async function(req, res, next) {
     var cost = req.body.cost;
     var projectType = req.body.projectType;
     var status = req.body.status;
+    var objectives = req.body.strgObjectives;
 
 
     var created_at = new Date().toISOString;
@@ -253,6 +257,7 @@ router.post('/create', async function(req, res, next) {
     cost = cost.replace("'", "\\'");
     projectType = projectType.replace("'", "\\'");
     status = status.replace("'", "\\'");
+    objectives = objectives.replace("'", "\\'");
 
 
 
@@ -282,7 +287,8 @@ router.post('/create', async function(req, res, next) {
         "'" + TRLJ + "'," +
         "'" + cost + "'," +
         "'" + projectType + "'," +
-        "'" + status + "'" +
+        "'" + status + "'," +
+        "'" + objectives + "'" +
         ");";
 
     //sql = sql.replace(/[\n\r\t]/g, "");
