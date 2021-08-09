@@ -116,6 +116,15 @@
                     }
                     countarr.push(jsondata[i].projecttype);
             }
+            else if(xval == "STRG") {
+                if(jsondata[i].objectives == "") {
+                    jsondata[i].objectives = "Undefined";
+                }
+                if(titlearr.indexOf(jsondata[i].objectives) === -1) {
+                    titlearr.push(jsondata[i].objectives);
+                    }
+                    countarr.push(jsondata[i].objectives);
+            }
         }
 
         if(yval == "cost") { //sums cost based on input
@@ -160,6 +169,11 @@
                     }
                     else if(xval == "Project type"){
                         if(jsondata[j].projecttype == titlearr[i]) {
+                        costarr[i] += jsondata[j].cost;
+                        }
+                    }
+                    else if(xval == "STRG"){
+                        if(jsondata[j].objectives == titlearr[i]) {
                         costarr[i] += jsondata[j].cost;
                         }
                     }
@@ -334,6 +348,7 @@
                         <option value="Capability Gap">Capability gap</option>
                         <option value="Technology Readiness Level">Technology Readiness Level</option>
                         <option value="Project type">Project type</option>
+                        <option value="STRG">STRG Letter Objective</option>
                     </select>
     
                     <label for="c1yaxis">Y axis</label>
@@ -385,6 +400,7 @@
                         <option value="Capability Gap">Capability gap</option>
                         <option value="Technology Readiness Level">Technology Readiness Level</option>
                         <option value="Project type">Project type</option> 
+                        <option value="STRG">STRG Letter Objective</option>
                     </select>
         
                     <label for="c2yaxis">Y axis</label>
@@ -438,6 +454,7 @@
                         <option value="Capability Gap">Capability gap</option>
                         <option value="Technology Readiness Level">Technology Readiness Level</option>
                         <option value="Project type">Project type</option> 
+                        <option value="STRG">STRG Letter Objective</option>
                     </select>
     
                     <label for="c3yaxis">Y axis</label>
@@ -491,6 +508,7 @@
                         <option value="Capability Gap">Capability gap</option>
                         <option value="Technology Readiness Level">Technology Readiness Level</option>
                         <option value="Project type">Project type</option> 
+                        <option value="STRG">STRG Letter Objective</option>
                     </select>
     
                     <label for="c4yaxis">Y axis</label>
